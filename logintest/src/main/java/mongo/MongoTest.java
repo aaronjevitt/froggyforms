@@ -13,7 +13,6 @@ public class MongoTest {
     public static void main(String[] args) {
         MongoClient mongoClient = null;
         DBCollection col;
-        BasicDBObjectBuilder builder;
         BasicDBObject obj;
         
         try {
@@ -23,13 +22,6 @@ public class MongoTest {
             
             System.out.println("Attempting to add to DB...");
             col = mongoClient.getDB("test_collection").getCollection("Persons");
-            
-            /*System.out.println("Got collection");
-            builder = BasicDBObjectBuilder.start().append("anything", "test person").append("else", "test country");
-            System.out.println("Finished builder");
-            System.out.println(col.getCount());
-            col.insert(builder.get());
-            System.out.println("Success : )");*/
             
             obj = new BasicDBObject();
             obj.put("anything", "test person");

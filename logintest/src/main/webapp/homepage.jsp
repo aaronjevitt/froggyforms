@@ -17,7 +17,7 @@ body{
 </head>
 <body>
 
-<form action="AdminController" method="post">
+<form action="AdminPage" method="post">
 <div>
   <p style="text-align: center;"><b style ="background-color: white">Welcome to FroggyForm, Admin. What would you like to do?<b></p>
 </div>

@@ -1,2 +1,4 @@
+mongo\MongoTest.class
+controllers\CreateController.class
 controllers\AdminController.class
 controllers\FroggyLogin.class

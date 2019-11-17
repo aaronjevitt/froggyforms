@@ -34,7 +34,7 @@ body{
 			</tr>
 			<tr>
 				<td><p style="width: 50%">Password</p></td>
-				<td><input type="text" name="password" style="width: 100%"/></td>
+				<td><input type="password" name="password" style="width: 100%"/></td>
 			</tr>
 		</table>
     <div  class="center">

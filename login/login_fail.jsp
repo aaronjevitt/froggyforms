@@ -7,12 +7,12 @@
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="froggy_login" method="post">
+<form action="FroggyLogin" method="post">
 		<H1 style="color: #ff0000;">The username or password was incorrect.</H1>
 		<table style="with: 50%">
  
 			<tr>
-				<td>UserName</td>
+				<td>Username</td>
 				<td><input type="text" name="username" /></td>
 			</tr>
 				<tr>
@@ -20,6 +20,6 @@
 				<td><input type="password" name="password" /></td>
 			</tr>
 		</table>
-		<input type="submit" value="Login" /></form>
+		<input type="submit" value="Log in" /></form>
 </body>
 </html>

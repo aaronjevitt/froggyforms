@@ -25,7 +25,7 @@ body{
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="FroggyLogin" method="post">
+<form action="FroggyHome" method="post">
 
     <h1 style="color: red; width: 60%; background-color: white; margin-top: 10vh; margin-left: 20%; text-align: center;"> The username or password was incorrect. </h1>
 		<table style="width: 50%; background-color: white; margin-left: 25%;">

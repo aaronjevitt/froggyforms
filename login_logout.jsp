@@ -25,7 +25,7 @@ body{
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="FroggyLogin" method="post">
+<form action="FroggyHome" method="post">
 
 		<table style="width: 50%; background-color: white; margin-top: 10vh; margin-left: 25%;">
 			<tr>

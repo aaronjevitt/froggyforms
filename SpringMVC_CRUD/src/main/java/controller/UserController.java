@@ -1,4 +1,4 @@
-package com.notearena.controller;
+package controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.notearena.model.UserObjectForm;
-import com.notearena.services.UserService;
+import model.UserObjectForm;
+import services.UserService;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;

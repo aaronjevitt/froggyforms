@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.notearena.controller;
+package controller;
 
-import com.notearena.model.UserObjectForm;
-import com.notearena.services.UserService;
+import model.UserObjectForm;
+import services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

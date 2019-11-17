@@ -1,4 +1,4 @@
-package com.notearena.model;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Column;

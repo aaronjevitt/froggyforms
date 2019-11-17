@@ -7,7 +7,7 @@
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="FroggyLogin" method="post">
+<form action="FroggyHome" method="post">
 		<table style="with: 50%">
  
 			<tr>

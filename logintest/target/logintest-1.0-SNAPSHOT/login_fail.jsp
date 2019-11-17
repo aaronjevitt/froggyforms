@@ -7,7 +7,7 @@
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="froggy_login" method="post">
+<form action="FroggyHome" method="post">
 		<H1 style="color: #ff0000;">The username or password was incorrect.</H1>
 		<table style="with: 50%">
  

@@ -4,14 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Homepage</title>
+<title>FroggyForm Home</title>
+<style>
+</style>
 </head>
 <body>
-	<table style="with: 50%">
-	<tr><td>
-	<% String username = request.getParameter("username"); %>
-<a>Welcome <% out.println(username); %>. You have logged in.</a></td></tr>
-<tr></tr><tr><td></td><td></td><td><a href="login_logout.jsp"><b>Log out</b></a></td></tr>
-</table>
+
+<form action="AdminPage" method="post">
+<div>
+  <p style="text-align: center; margin-top: 45vh"><b style ="background-color: green">DUMMY PAGE FOR DELETE<b></p>
+</div>
+
+
 </body>
 </html>

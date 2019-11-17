@@ -7,7 +7,8 @@
 <title>FroggyForm Login</title>
 </head>
 <body>
-<form action="guru_login" method="post">
+<!-- this is a comment : ) -->
+<form action="FroggyLogin" method="post">
 		<table style="with: 50%">
  
 			<tr>

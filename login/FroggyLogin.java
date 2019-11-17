@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FroggyLogin extends HttpServlet {
  
-    public guru_login() {
+    public FroggyLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -22,9 +22,9 @@ public class FroggyLogin extends HttpServlet {
 			RequestDispatcher req = request.getRequestDispatcher("login_logout.jsp");
 			req.include(request, response);
 		}
-		else if(username.compareTo("admin") == 0 && password.compareTo("password") == 0)
+		else if(username.compareToIgnoreCase("admin") == 0 && password.compareTo("password") == 0)
 		{
-			RequestDispatcher req = request.getRequestDispatcher("homepage.jsp");
+			RequestDispatcher req = request.getRequestDispatcher("login_success.jsp");
 			req.forward(request, response);
 		}
 		else

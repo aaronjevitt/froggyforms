@@ -128,7 +128,6 @@
 				{
 					switch ($(fbRender).formRender("userData")[i].type)
 					{
-						// TODO fix (checking only box 1 -> returns false)
 						case "checkbox-group":
 							if(!$(fbRender).formRender("userData")[i].userData)
 							{
@@ -155,14 +154,14 @@
 							}
 							break;
 						
-						case "radio-group": // TODO
+						case "radio-group":
 							if(!$(fbRender).formRender("userData")[i].userData)
 							{
 								return false;
 							}
 							break;
 						
-						case "select": // TODO
+						case "select":
 							if($(fbRender).formRender("userData")[i].userData[0] 
 								== $(fbRender).formRender("userData")[i].values[0].value)
 							{
@@ -204,12 +203,12 @@
 			() => {
 				if(validate() == true)
 				{
-					// submit
+					// "submit"
 					window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
 				}
 				else
 				{
-					window.alert("FILL IN REQUIRED FIELDS");
+					window.alert("Please fill in all required forms before submitting");
 				}
 			},
 			false

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
     <title>Example Submitted Form Render</title>
 </head>
 <body>
@@ -22,59 +23,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
 	<script>
-		/*
-		// for blank form
-		jQuery(function($)
-		{
-			var fbTemplate = document.getElementById('fb-template');
-			$('.fb-render').formRender(
-			{
-				dataType: 'xml',
-				formData: fbTemplate.value
-			});
-		});
-		*/
-
-		// for filled-out form
 		jQuery(function($) 
 		{
 			var fbTemplate = document.getElementById('fb-template');
 			$('.fb-render').formRender({
 				dataType: 'xml',
-				formData: [ // here's where we copied the filled out form shiz
-					{
-						"name": "select-1454177070204",
-						"label": "Select",
-						"style": "multiple",
-						"className": "form-control",
-						"type": "select",
-						"values": [
-							{
-								"value": "option-1",
-								"label": "Option 1"
-							},
-							{
-								"value": "option-2",
-								"label": "Option 2"
-							}
-						],
-						"userData": [
-							"option-2"
-						]
-					},
-					{
-						"name": "rich-text-1454177067296",
-						"label": "Text Area",
-						"className": "form-control",
-						"type": "textarea",
-						"userData": [
-							"stuffity stuff"
-						]
-					}
-				]
+				formData: [{"type":"checkbox-group","required":true,"label":"checko mehico","name":"checkbox-group-1574027405290","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-1","option-2"]},{"type":"date","required":true,"label":"dato dato","className":"form-control","name":"date-1574029037726","userData":["2019-10-31"]},{"type":"file","required":true,"label":"File Upload","className":"form-control","name":"file-1574027410621","subtype":"file"},{"type":"number","required":true,"label":"numero","className":"form-control","name":"number-1574028946834","userData":["2222"]},{"type":"radio-group","required":true,"label":"rodeo radio","name":"radio-group-1574029006581","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-1"]},{"type":"select","required":true,"label":"selecto mundo","className":"form-control","name":"select-1574027398028","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-3"]},{"type":"text","required":true,"label":"texto t-trexto","className":"form-control","name":"text-1574027401302","subtype":"text","userData":["domo arigato"]},{"type":"textarea","required":true,"label":"paragraphical interface","className":"form-control","name":"textarea-1574029133288","subtype":"textarea","userData":["mr roboto\r\ndomo"]},{"type":"hidden","name":"hidden-1574202434916","userData":[""]}]
 			});
 		});
-
 	</script>
 </body>
 </html>

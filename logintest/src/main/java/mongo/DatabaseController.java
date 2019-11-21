@@ -7,13 +7,14 @@ import com.mongodb.DBObject;
 
 public class DatabaseController {
     
-    private static MongoClient client = null;
+    private MongoClient client = null;
     
-    public static void connect(String ip)
+    public void connect(String ip)
     {
         try
         {
             client = new MongoClient(ip, 27017);
+            System.out.println("Connected to " + ip);
         }
         catch(Exception e)
         {
@@ -21,15 +22,16 @@ public class DatabaseController {
         }
     }
     
-    public static void close()
+    public void close()
     {
         client.close();
+        System.out.println("Disconnecting");
     }
     
     // Form name will be the unique URL for consumers to follow
     // TODO should the unique URL be passed into this function or returned
     //  by this method?
-    public static String addNewForm(String formName, String json)
+    public String addNewForm(String formName, String json)
     {
         DBCollection col = null;
         BasicDBObject obj = null;
@@ -49,7 +51,7 @@ public class DatabaseController {
         return "";
     }
     
-    public static void addSubmission(String formName, String json, String formJson, String url)
+    public void addSubmission(String formName, String json, String formJson, String url)
     {
         DBCollection col = null;
         DBObject form = null;
@@ -84,18 +86,18 @@ public class DatabaseController {
         col.update(query, update);
     }
     
-    public static MongoClient getClient()
+    public MongoClient getClient()
     {
         return client;
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MongoClient mongoClient = null;
         DBCollection col;
         BasicDBObject obj;
         
         try {
-            //mongoClient = new MongoClient( /*"192.168.137.1"*/ "localhost", 27017 );
+            //mongoClient = new MongoClient( /*"192.168.137.1"// "localhost", 27017 );
             
             connect("localhost");
  
@@ -112,13 +114,13 @@ public class DatabaseController {
             /*obj = new BasicDBObject();
             obj.put("anything", "test person");
             obj.put("else", "test country");
-            col.insert(obj);*/
+            col.insert(obj);
             System.out.println("Success : )");
             
             close();
             
         } catch (Exception e) {
             e.printStackTrace();
-        }       
-    }
+        }
+    }*/
 }

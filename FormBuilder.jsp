@@ -18,7 +18,7 @@
 	<form action="FroggyPublisher" method="post">
 		<div>
 			<button type="button" id="publishButton">Publish Form</button>
-			<div id="jsonString" style="visibility: hidden;"></div>
+			<div id="jsonString" name="jsonString" style="visibility: hidden;"></div>
 		</div>
 	</form>
 

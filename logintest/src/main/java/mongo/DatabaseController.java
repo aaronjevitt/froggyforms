@@ -4,6 +4,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.DBCollection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DB;
 
 public class DatabaseController {
     
@@ -31,31 +33,10 @@ public class DatabaseController {
     // Form name will be the unique URL for consumers to follow
     // TODO should the unique URL be passed into this function or returned
     //  by this method?
-    public String addNewForm(String formName, String json)
+    public void addNewForm(String url, String json)
     {
         DBCollection col = null;
         BasicDBObject obj = null;
-        
-        if(client == null)
-        {
-            System.out.println("Connection not established.");
-            return null;
-        }
-        
-        col = client.getDB("forms").getCollection("published_forms");
-        obj = new BasicDBObject();
-        
-        obj.put(formName, json);
-        col.insert(obj);
-        
-        return "";
-    }
-    
-    public void addSubmission(String formName, String json, String formJson, String url)
-    {
-        DBCollection col = null;
-        DBObject form = null;
-        BasicDBObject query, newDoc, update = null;
         
         if(client == null)
         {
@@ -64,26 +45,111 @@ public class DatabaseController {
         }
         
         col = client.getDB("forms").getCollection("published_forms");
-        form = new BasicDBObject();
-        form.put(url, json);
+        obj = new BasicDBObject();
+        
+        obj.put("unique_url", url);
+        obj.put("form_json", json);
+        col.insert(obj);
+    }
+    
+    public void addSubmission(String url, String json, int submissionNumber)
+    {
+        DBCollection col = null;
+        DBObject form = null;
+        DBCursor cursor = null;
+        BasicDBObject query, newDoc, update = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established.");
+            return;
+        }
+        
+        col = client.getDB("forms").getCollection(url);
+        BasicDBObject sub = new BasicDBObject();
+        
+        sub.put("number", submissionNumber);
+        sub.put("json", json);
+        col.insert(sub);
+        /*
+        query = new BasicDBObject();
+        query.put("unique_url", url);
+        cursor = col.find(query);
+        
+        while(cursor.hasNext())
+        {
+            DBObject cursorResult = cursor.next();
+                System.out.println("found correct cursor result of formName: " + formName);
+                System.out.println(cursorResult);
+                form = new BasicDBObject();
+                form.put("sub_json", json);
+
+                query = new BasicDBObject();
+                query.put("unique_url", url);
+
+                newDoc = new BasicDBObject();
+                newDoc.put("submission_" + submissionNumber, form);
+
+                update = new BasicDBObject();
+                update.put("$set", newDoc);
+
+                //form = col.findOne(formName);
+                //obj = new BasicDBObject();
+
+        //        obj.put(url, json);
+        //        form.put("sub1", obj);
+        //        col.insert(obj);
+
+                col.update(query, update);
+            }*/
+        
+        
+        
+    }
+    
+    public void deleteForm(String url)
+    {
+        DBCollection col = null;
+        DBObject query = null;
+        DBCursor cursor = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established.");
+            return;
+        }
+        
+        col = client.getDB("forms").getCollection(url);
+        col.drop();
+        col = client.getDB("forms").getCollection("published_forms");
         
         query = new BasicDBObject();
-        query.put(formName, formJson);
+        query.put("unique_url", url);
+        cursor = col.find(query);
         
-        newDoc = new BasicDBObject();
-        newDoc.put(url, form);
+        while(cursor.hasNext())
+        {
+            DBObject result = cursor.next();
+            col.remove(result);
+        }
+    }
+    
+    public void deleteSubmission(String url, int submissionNumber)
+    {
+        BasicDBObject obj = null;
+        DBCollection col = null;
         
-        update = new BasicDBObject();
-        update.put("$set", newDoc);
+        if(client == null)
+        {
+            System.out.println("Connection not established.");
+            return;
+        }
         
-        //form = col.findOne(formName);
-        //obj = new BasicDBObject();
+        col = client.getDB("forms").getCollection(url);
+        obj = new BasicDBObject();
         
-//        obj.put(url, json);
-//        form.put("sub1", obj);
-//        col.insert(obj);
-
-        col.update(query, update);
+        obj.put("number", submissionNumber);
+        col.remove(obj);
     }
     
     public MongoClient getClient()

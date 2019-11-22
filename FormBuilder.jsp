@@ -43,6 +43,10 @@
 		{
 			var frogData = (formBuilder.actions.getData('json'));
 			console.log(frogData);
+			if(frogData == "[]")
+			{
+				alert("You can not publish an empty form.");
+			}
 			// var jsonText = document.getElementById("jsonString");
 			// jsonText.innerHTML = frogData;
 			document.getElementById("jsonString").innerHTML = frogData;

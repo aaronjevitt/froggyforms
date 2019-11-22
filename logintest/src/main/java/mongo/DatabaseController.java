@@ -5,18 +5,26 @@ import com.mongodb.DBCollection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
-import com.mongodb.DB;
 
 public class DatabaseController {
     
     private MongoClient client = null;
     
+    /**
+     * Connects to a MongoDB server at the given address.
+     * 
+     * @param ip the address that should be used in the attempt to connect
+     */
     public void connect(String ip)
     {
         try
         {
             client = new MongoClient(ip, 27017);
-            System.out.println("Connected to " + ip);
+            
+            if(client != null)
+            {
+                System.out.printf("Connected to %s\n", ip);
+            }
         }
         catch(Exception e)
         {
@@ -24,15 +32,28 @@ public class DatabaseController {
         }
     }
     
+    /**
+     * Closes the connection with the MongoDB server if one was opened.
+     */
     public void close()
     {
+        if(client == null)
+        {
+            System.out.println("Connection not established before calling close().");
+            return;
+        }
+        
         client.close();
-        System.out.println("Disconnecting");
+        client = null;
     }
     
-    // Form name will be the unique URL for consumers to follow
-    // TODO should the unique URL be passed into this function or returned
-    //  by this method?
+    /**
+     * Adds a new form entry to the "published_forms" collection and creates
+     * a new collection to hold the submissions for the new  form.
+     * 
+     * @param url   the unique URL associated with this form
+     * @param json  the entirety of the JSON code representing the layout of the form
+     */
     public void addNewForm(String url, String json)
     {
         DBCollection col = null;
@@ -40,7 +61,7 @@ public class DatabaseController {
         
         if(client == null)
         {
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established before trying to publish form.");
             return;
         }
         
@@ -52,61 +73,38 @@ public class DatabaseController {
         col.insert(obj);
     }
     
+    /**
+     * Adds a new submission entry to the collection mapped to by the unique URL.
+     * 
+     * @param url               the unique URL of the form the submission is for
+     * @param json              the entirety of the JSON representing the layout 
+     *                          of the form and what was put into each field
+     * @param submissionNumber  the index for the new submission
+     */
     public void addSubmission(String url, String json, int submissionNumber)
     {
         DBCollection col = null;
-        DBObject form = null;
-        DBCursor cursor = null;
-        BasicDBObject query, newDoc, update = null;
+        BasicDBObject sub = null;
         
         if(client == null)
         {
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established before trying to add submission.");
             return;
         }
         
         col = client.getDB("forms").getCollection(url);
-        BasicDBObject sub = new BasicDBObject();
+        sub = new BasicDBObject();
         
         sub.put("number", submissionNumber);
         sub.put("json", json);
         col.insert(sub);
-        /*
-        query = new BasicDBObject();
-        query.put("unique_url", url);
-        cursor = col.find(query);
-        
-        while(cursor.hasNext())
-        {
-            DBObject cursorResult = cursor.next();
-                System.out.println("found correct cursor result of formName: " + formName);
-                System.out.println(cursorResult);
-                form = new BasicDBObject();
-                form.put("sub_json", json);
-
-                query = new BasicDBObject();
-                query.put("unique_url", url);
-
-                newDoc = new BasicDBObject();
-                newDoc.put("submission_" + submissionNumber, form);
-
-                update = new BasicDBObject();
-                update.put("$set", newDoc);
-
-                //form = col.findOne(formName);
-                //obj = new BasicDBObject();
-
-        //        obj.put(url, json);
-        //        form.put("sub1", obj);
-        //        col.insert(obj);
-
-                col.update(query, update);
-            }*/
-        
-        
-        
     }
     
+    /**
+     * Deletes a form and all of its submissions from the database.
+     * 
+     * @param url the unique URL of the form to delete
+     */
     public void deleteForm(String url)
     {
         DBCollection col = null;
@@ -115,12 +113,15 @@ public class DatabaseController {
         
         if(client == null)
         {
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established before trying to delete form.");
             return;
         }
         
+        // Drop the collection of submissions from the database
         col = client.getDB("forms").getCollection(url);
         col.drop();
+        
+        // Remove the entry for the form from the "published_forms" collection
         col = client.getDB("forms").getCollection("published_forms");
         
         query = new BasicDBObject();
@@ -134,6 +135,13 @@ public class DatabaseController {
         }
     }
     
+    /**
+     * Delete a single entry from the collection of submissions associated
+     * with the given unique URL.
+     * 
+     * @param url               the unique URL of the form to delete the submission from
+     * @param submissionNumber  the specific submission number to delete
+     */
     public void deleteSubmission(String url, int submissionNumber)
     {
         BasicDBObject obj = null;
@@ -141,7 +149,7 @@ public class DatabaseController {
         
         if(client == null)
         {
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established before trying to delete submission.");
             return;
         }
         
@@ -152,41 +160,34 @@ public class DatabaseController {
         col.remove(obj);
     }
     
+    /**
+     * Count the number of submissions that the form associated with the given
+     * URL currently has.
+     * 
+     * @param url   the unique URL of the form to count the submissions for
+     * @return      the number of submissions in the form
+     */
+    public long countSubmissions(String url)
+    {
+        DBCollection col = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to count submissions.");
+            return -1;
+        }
+        
+        col = client.getDB("forms").getCollection(url);
+        return col.count();
+    }
+    
+    /**
+     * Get the object for the database that this class uses.
+     * 
+     * @return the MongoDB MongoClient object that this class uses
+     */
     public MongoClient getClient()
     {
         return client;
     }
-    
-    /*public static void main(String[] args) {
-        MongoClient mongoClient = null;
-        DBCollection col;
-        BasicDBObject obj;
-        
-        try {
-            //mongoClient = new MongoClient( /*"192.168.137.1"// "localhost", 27017 );
-            
-            connect("localhost");
- 
-            if(client != null)
-                System.out.println("Connected to MongoDB!");
-            
-            System.out.println("Attempting to add to DB...");
-            //col = client.getDB("test_collection").getCollection("Persons");
-            //addNewForm("testForm3", "formjson");
-            //addNewForm("whydoesntthisadd", "formjson2");
-            addSubmission("testForm2", "subjson i love coding", "json", "0x21");
-            addSubmission("testForm3", "subjson", "formjson", "0x35167");
-            
-            /*obj = new BasicDBObject();
-            obj.put("anything", "test person");
-            obj.put("else", "test country");
-            col.insert(obj);
-            System.out.println("Success : )");
-            
-            close();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 }

@@ -39,6 +39,7 @@ public class FroggyPublisher extends HttpServlet {
     {
       String url = new String();
       boolean isUnique = false;
+
       while(isUnique == false)
       {
         StringBuilder uniqueBoi = new StringBuilder();
@@ -46,10 +47,13 @@ public class FroggyPublisher extends HttpServlet {
         {
             uniqueBoi.append(randomChar());
         }
-
         url = uniqueBoi.toString();
-        // TODO Check if the url is unique, if yes, set isUnique to true
-        isUnique = true;
+
+        db.connect();
+        if(!db.checkIfExists(url))
+        	isUnique = true;
+
+        db.close();
       }
 
       return url;
@@ -63,7 +67,6 @@ public class FroggyPublisher extends HttpServlet {
 
 		if(!json.isEmpty())
 		{
-      // TODO send json to the database w/ the uniqueURL
       String url = createUniqueURL();
 
       db.connect();

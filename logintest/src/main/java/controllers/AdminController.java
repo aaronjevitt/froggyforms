@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mongo.DatabaseController;
+
 public class AdminController extends HttpServlet {
  
     public AdminController() {
@@ -29,7 +31,12 @@ public class AdminController extends HttpServlet {
 		}
                 else if(view != null)
                 {
+                    DatabaseController db = new DatabaseController();
+                    db.connect();
+                    System.out.println(db.getLastForm());
+                    
                     RequestDispatcher req = request.getRequestDispatcher("dummyview.jsp");
+                    db.close();
                     req.include(request, response);
                 }
                 else if(delete != null)

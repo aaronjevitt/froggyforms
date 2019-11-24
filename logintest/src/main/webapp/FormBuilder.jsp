@@ -69,8 +69,8 @@
                         }
                         
                         // document.getElementById("publishButton").style.visibility = "visible";
-                        // document.getElementById("publishButton").click();
-                        $.post("FormBuilder.jsp", frogData, function() { alert(frogData); });
+                         document.getElementById("publishButton").click();
+                        //$.post("FormBuilder.jsp", frogData, function() { alert(frogData); });
 			
 		});
 

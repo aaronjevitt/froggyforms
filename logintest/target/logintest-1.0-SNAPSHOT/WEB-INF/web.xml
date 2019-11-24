@@ -16,6 +16,24 @@
         <servlet-name>AdminPage</servlet-name>
         <servlet-class>controllers.AdminController</servlet-class>
     </servlet>
+    <servlet>
+        <description/>
+        <display-name>Submission</display-name>
+        <servlet-name>Submission</servlet-name>
+        <servlet-class>controllers.SubmissionController</servlet-class>
+    </servlet>
+    <servlet>
+        <description/>
+        <display-name>FroggyPublisher</display-name>
+        <servlet-name>FroggyPublisher</servlet-name>
+        <servlet-class>controllers.FroggyPublisher</servlet-class>
+    </servlet>
+    <servlet>
+        <description/>
+        <display-name>PublishedPage</display-name>
+        <servlet-name>PublishedPage</servlet-name>
+        <servlet-class>controllers.PublishedPage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FroggyHome</servlet-name>
         <url-pattern>/FroggyHome</url-pattern>
@@ -23,5 +41,17 @@
     <servlet-mapping>
         <servlet-name>AdminPage</servlet-name>
         <url-pattern>/AdminPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Submission</servlet-name>
+        <url-pattern>/Submission</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FroggyPublisher</servlet-name>
+        <url-pattern>/FroggyPublisher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublishedPage</servlet-name>
+        <url-pattern>/PublishedPage</url-pattern>
     </servlet-mapping>
 </web-app>

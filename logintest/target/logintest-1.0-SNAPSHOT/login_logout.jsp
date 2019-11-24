@@ -38,7 +38,7 @@ body{
 			</tr>
 		</table>
     <div  class="center">
-		<input type="submit" value="Log in"  class="buttn"/></form>
+		<input type="submit" value="Log in"/></form>
     </div>
 </body>
 </html>

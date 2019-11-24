@@ -9,13 +9,12 @@ import com.mongodb.DBCursor;
 public class DatabaseController {
     
     private MongoClient client = null;
+    private final String ip = "localhost";
     
     /**
      * Connects to a MongoDB server at the given address.
-     * 
-     * @param ip the address that should be used in the attempt to connect
      */
-    public void connect(String ip)
+    public void connect()
     {
         try
         {
@@ -70,6 +69,8 @@ public class DatabaseController {
         
         obj.put("unique_url", url);
         obj.put("form_json", json);
+        
+        System.out.println("adding form " + url);
         col.insert(obj);
     }
     
@@ -98,6 +99,64 @@ public class DatabaseController {
         sub.put("number", submissionNumber);
         sub.put("json", json);
         col.insert(sub);
+    }
+    
+    /**
+     * Get the last form in the database. This *should* be the most recent form created.
+     * 
+     * @return the unique URL of the last form in the database
+     */
+    public String getLastForm()
+    {
+        DBCollection col = null;
+        BasicDBObject form = null;
+        DBCursor cursor = null;
+        String url = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connecrtion not established before trying to get last form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection("published_forms");
+        cursor = col.find();
+        
+        while(cursor.hasNext())
+        {
+            form = (BasicDBObject)cursor.next();
+            url = form.getString("unique_url");
+        }
+        
+        return url;
+    }
+    
+    public String getFormJson(String url)
+    {
+        DBCollection col = null;
+        DBObject query = null;
+        DBCursor cursor = null;
+        String json = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to get a form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection("published_forms");
+        
+        query = new BasicDBObject();
+        query.put("unique_url", url);
+        cursor = col.find(query);
+        
+        while(cursor.hasNext())
+        {
+            BasicDBObject result = (BasicDBObject)cursor.next();
+            json = result.getString("form_json");
+        }
+        
+        return json;
     }
     
     /**

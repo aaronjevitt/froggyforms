@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mongo.DatabaseController;
 
@@ -65,6 +66,7 @@ public class FroggyPublisher extends HttpServlet {
     {
         DatabaseController db = new DatabaseController();
         String json = request.getParameter("jsonString");
+        String url = new String();
         
         System.out.println("string reps: ");
         System.out.println(request.getPathInfo());
@@ -72,10 +74,9 @@ public class FroggyPublisher extends HttpServlet {
 
         if(json != null && !json.isEmpty())
         {
-            String url = createUniqueURL();
+            url = createUniqueURL();
 
             db.connect();
-            System.out.println("connected");
             db.addNewForm(url, json);
             db.close();
         }
@@ -84,8 +85,24 @@ public class FroggyPublisher extends HttpServlet {
             System.out.println("No form");
         }
         
-        //RequestDispatcher req = request.getRequestDispatcher("FormBuilder.jsp");
-        //req.include(request, response);
+//            db = new DatabaseController();
+//            //String url;
+//            
+//            db.connect();
+//            url = db.getLastForm();
+//            
+//            //request.setAttribute("unique_url", url);
+//            System.out.println("got form " + url);
+//            
+//            db.close();
+        
+        RequestDispatcher req = request.getRequestDispatcher("FroggyFormPublished.jsp");
+        System.out.println("post request froggypublisher");
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("unique_url", "The URL for this form is froggyform.bike/" + url);
+        
+        req.include(request, response);
         
         return;
     }

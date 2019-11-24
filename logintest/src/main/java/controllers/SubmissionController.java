@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminController extends HttpServlet {
+public class SubmissionController extends HttpServlet {
  
-    public AdminController() {
+    public SubmissionController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -18,25 +18,16 @@ public class AdminController extends HttpServlet {
         @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String create = request.getParameter("create");
-		String view = request.getParameter("view");
-                String delete = request.getParameter("delete");
+		String submit = request.getParameter("submit-form");
+		//String view = request.getParameter("view");
+                //String delete = request.getParameter("delete");
 		
-		if(create != null)
+		if(submit != null)
 		{
-                    RequestDispatcher req = request.getRequestDispatcher("dummycreate.jsp");
-                    req.include(request, response);
+                    System.out.println("Button click recognized");
+                    //RequestDispatcher req = request.getRequestDispatcher("formBuilder.jsp");
+                    //req.include(request, response);
 		}
-                else if(view != null)
-                {
-                    RequestDispatcher req = request.getRequestDispatcher("dummyview.jsp");
-                    req.include(request, response);
-                }
-                else if(delete != null)
-                {
-                    RequestDispatcher req = request.getRequestDispatcher("dummydelete.jsp");
-                    req.include(request, response);
-                }
 	}
  
 }

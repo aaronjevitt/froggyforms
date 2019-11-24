@@ -2,17 +2,32 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <title>Example Blank Form Render</title>
+    <title>Blank Form Render</title>
 </head>
 <body>
 	<form id="fb-render"></form>
-	<button type="button" id="get-user-data">Get Updated formData</button>
+	<button type="button" id="submit-form">Submit Form</button>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
 	<script>
-		const getUserDataBtn = document.getElementById("get-user-data");
+		const submitFormBtn = document.getElementById("submit-form");
+		submitFormBtn.addEventListener(
+			"click",
+			() => {
+				if(validate() == true)
+				{
+					submit();
+				}
+				else
+				{
+					window.alert("Please fill in all required forms before submitting");
+				}
+			},
+			false
+		);
+		
 		const fbRender = document.getElementById("fb-render");
 		const originalFormData = [
 			{
@@ -221,22 +236,7 @@
 		
 		jQuery(function($) {
 		  const formData = JSON.stringify(originalFormData);
-
 		  $(fbRender).formRender({formData});
-		  getUserDataBtn.addEventListener(
-			"click",
-			() => {
-				if(validate() == true)
-				{
-					submit();
-				}
-				else
-				{
-					window.alert("Please fill in all required forms before submitting");
-				}
-			},
-			false
-		  );
 		});
 	</script>
 </body>

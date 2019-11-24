@@ -41,11 +41,11 @@
 		var submittedFormData = [];
 		$(document).ready(function () { // Populate formList
 			var formList = document.getElementById('formSelect');
-			var i;
-			for(i = 0; i < ${num_urls}; i++)
+			for(var i = 0; i < ${num_urls}; i++)
 			{
-				// formList.options[i] = new Option('URL: ' + form unique URL);
-				formList.options[i] = new Option("${url_array.get(i)}"); // placeholder
+				console.log(i);
+        var str = ${url_array.get(i)};
+				formList.options[i] = new Option("str");
 			}
 		});
 

@@ -16,7 +16,7 @@ body{
   <h1 style="color: green">Form Published!</h1>
   <h2 style="color: green">The URL to fill out this form is FroggyForm.bike/nonexistantURL<h2>
   <br></br>
-  <form action="AdminPage" method="post">
+  <form action="PublishedPage" method="post">
     <input type="submit" value="Back to homepage" name="homepage"/>
   </form>
 </body>

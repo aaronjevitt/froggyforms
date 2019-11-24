@@ -24,7 +24,7 @@ public class AdminController extends HttpServlet {
 		
 		if(create != null)
 		{
-                    RequestDispatcher req = request.getRequestDispatcher("dummycreate.jsp");
+                    RequestDispatcher req = request.getRequestDispatcher("FormBuilder.jsp");
                     req.include(request, response);
 		}
                 else if(view != null)

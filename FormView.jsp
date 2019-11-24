@@ -41,14 +41,11 @@
 		var submittedFormData = [];
 		$(document).ready(function () { // Populate formList
 			var formList = document.getElementById('formSelect');
-			// var length = number of forms in database;
-			var length = 4; // placeholder
-
 			var i;
-			for(i = 0; i < length; i++)
+			for(i = 0; i < ${num_urls}; i++)
 			{
 				// formList.options[i] = new Option('URL: ' + form unique URL);
-				formList.options[i] = new Option(${url_array.get(i)}; // placeholder
+				formList.options[i] = new Option("${url_array.get(i)}"); // placeholder
 			}
 		});
 
@@ -58,7 +55,7 @@
 				var submissionList = document.getElementById('submissionSelect');
 				// var subLength = number of form submissions for form in database;
 				var subLength = 12; // placeholder
-				console.log("clickity clackity here comes mcblackity");
+				console.log("clickity clackity");
 				var i;
 				for(i = 0; i < subLength; i++)
 				{

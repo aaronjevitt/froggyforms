@@ -5,29 +5,85 @@
 	<title>Example Submitted Form Render</title>
 </head>
 <body>
+	<form>
+		<h4>Form:</h4>
+		<select class="form-control"  id='formSelect' name='formSelect' onClick="getForm()"></select>
+
+		<h4>Submission:</h4>
+		<select class="form-control"  id='submissionSelect' name='submissionSelect'"></select>
+	</form>
+	
+	<button type="button" id="view-form">View Form Submission</button>
+
 	<div class="fb-render">
 		<textarea id="fb-template">
 			<form-template></form-template>
 		</textarea>
 	</div>
 
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
 	<script>
-		// add "disabled":true to end of each field to prevent editing -> do it in the database
-		const submittedFormData = [{"type":"checkbox-group","required":true,"label":"checko mehico","name":"checkbox-group-1574027405290","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-1","option-2","option-3"], "disabled":true},{"type":"date","required":true,"label":"dato dato","className":"form-control","name":"date-1574029037726","userData":["2019-11-07"]},{"type":"file","required":true,"label":"File Upload","className":"form-control","name":"file-1574027410621","subtype":"file"},{"type":"number","required":true,"label":"numero","className":"form-control","name":"number-1574028946834","userData":["1234567"]},{"type":"radio-group","required":true,"label":"rodeo radio","name":"radio-group-1574029006581","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-3"]},{"type":"select","required":true,"label":"selecto mundo","className":"form-control","name":"select-1574027398028","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-2"]},{"type":"text","required":true,"label":"texto t-trexto","className":"form-control","name":"text-1574027401302","subtype":"text","userData":["this is the text field"]},{"type":"textarea","required":true,"label":"paragraphical interface","className":"form-control","name":"textarea-1574029133288","subtype":"textarea","userData":["and this is the paragraph\r\nf\r\ni\r\ne\r\nl\r\nd"]},{"type":"hidden","name":"hidden-1574202434916","userData":[""]}];
-		// note - checkbox selections if field required do not render; issue with formBuilder https://github.com/kevinchappell/formBuilder/issues/910
-		
-		jQuery(function($) 
-		{
-			var fbTemplate = document.getElementById('fb-template');
-			$('.fb-render').formRender({
-				dataType: 'json',
-				formData: submittedFormData
-			});
+		const viewFormBtn = document.getElementById("view-form");
+		viewFormBtn.addEventListener(
+			"click",
+			() => {
+				getSubmission();
+			},
+			false
+		);
+	
+		var submittedFormData = [];
+		$(document).ready(function () {
+			var formList = document.getElementById('formSelect');
+			// var length = number of forms in database;
+			var length = 4; // placeholder
+			
+			var i;
+			for(i = 0; i < length; i++)
+			{
+				// formList.options[i] = new Option('URL: ' + form unique URL);
+				formList.options[i] = new Option('URL: ' + i); // placeholder
+			}
 		});
+		
+		function getForm()
+		{
+			$(document).ready(function () {
+			var submissionList = document.getElementById('submissionSelect');
+			// var length = number of forms in database;
+			var subLength = 12; // placeholder
+			
+			var i;
+			for(i = 0; i < subLength; i++)
+			{
+				// formList.options[i] = new Option('URL: ' + form unique URL);
+				submissionList.options[i] = new Option('Submission # ' + i); // placeholder
+			}
+			});
+		}
+		
+		function getSubmission()
+		{
+			//const submittedFormData = list of forms from database[formList.selectedIndex];
+			submittedFormData = [{"type":"checkbox-group","required":true,"label":"checko mehico","name":"checkbox-group-1574027405290","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-3"],"disabled":true},{"type":"date","required":true,"label":"dato dato","className":"form-control","name":"date-1574029037726","userData":["2019-10-29"],"disabled":true},{"type":"file","required":true,"label":"File Upload","className":"form-control","name":"file-1574027410621","subtype":"file","disabled":true},{"type":"number","required":true,"label":"numero","className":"form-control","name":"number-1574028946834","userData":["0"],"disabled":true},{"type":"radio-group","required":true,"label":"rodeo radio","name":"radio-group-1574029006581","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-2"],"disabled":true},{"type":"select","required":true,"label":"selecto mundo","className":"form-control","name":"select-1574027398028","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-3"],"disabled":true},{"type":"text","required":true,"label":"texto t-trexto","className":"form-control","name":"text-1574027401302","subtype":"text","userData":["0"],"disabled":true},{"type":"textarea","required":true,"label":"paragraphical interface","className":"form-control","name":"textarea-1574029133288","subtype":"textarea","userData":["0"],"disabled":true},{"type":"hidden","name":"hidden-1574202434916","userData":[""],"disabled":true}]
+			// ^ placeholder
+			loadFormSubmission();
+		}
+		// note - checkbox selections, when field required, do not render; issue with formBuilder https://github.com/kevinchappell/formBuilder/issues/910
+
+		function loadFormSubmission()
+		{
+			jQuery(function($)
+			{
+				var fbTemplate = document.getElementById('fb-template');
+				$('.fb-render').formRender({
+					dataType: 'json',
+					formData: submittedFormData
+				});
+			});
+		}
 	</script>
 </body>
 </html>

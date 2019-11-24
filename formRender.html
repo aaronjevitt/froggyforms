@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
     <title>Example Blank Form Render</title>
 </head>
 <body>
@@ -135,7 +136,7 @@
 						case "checkbox-group":
 							if(!$(fbRender).formRender("userData")[i].userData)
 							{
-								return false; // maybe return type to fill out?
+								return false; // Maybe return type to fill out?
 							}
 							break;
 						
@@ -146,7 +147,7 @@
 							}
 							break;
 						
-						/* can't implement currently - nothing stored
+						/* Can't implement currently - nothing stored
 						case "file":
 							break;
 						*/
@@ -165,6 +166,7 @@
 							}
 							break;
 						
+						// Assuming use of default "select an option" option as option #1
 						case "select":
 							if($(fbRender).formRender("userData")[i].userData[0] 
 								== $(fbRender).formRender("userData")[i].values[0].value)
@@ -188,7 +190,7 @@
 							}
 							break;
 						
-						/* not yet implemented - not sure how field works in form
+						/* Not yet implemented - not sure how hidden field works in form
 						case "hidden":
 							break;
 						*/
@@ -203,17 +205,30 @@
 			return true;
 		}
 		
+		function submit()
+		{
+			// Add "disabled":true to end of each field to prevent editing
+			var length = $(fbRender).formRender("userData").length;
+			var i;
+			for(i = 0; i < length; i++) // Go through each field
+			{
+				$(fbRender).formRender("userData")[i].disabled = true;
+			}
+			
+			// "Submit"
+			window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
+		}
+		
 		jQuery(function($) {
 		  const formData = JSON.stringify(originalFormData);
 
-		  $(fbRender).formRender({ formData });
+		  $(fbRender).formRender({formData});
 		  getUserDataBtn.addEventListener(
 			"click",
 			() => {
 				if(validate() == true)
 				{
-					// "submit"
-					window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
+					submit();
 				}
 				else
 				{
@@ -223,7 +238,6 @@
 			false
 		  );
 		});
-
 	</script>
 </body>
 </html>

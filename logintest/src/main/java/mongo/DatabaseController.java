@@ -182,6 +182,38 @@ public class DatabaseController {
     }
     
     /**
+     * Check if there is a form that already exists with the given URL.
+     * 
+     * @param url   the unique URL to check against the database
+     * @return      whether that URL is already in the database or not
+     */
+    public boolean checkIfExists(String url)
+    {
+        DBCollection col = null;
+        DBObject query = null;
+        DBCursor cursor = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to check if a URL exists.");
+            return false;
+        }
+        
+        col = client.getDB("forms").getCollection("published_forms");
+        
+        query = new BasicDBObject();
+        query.put("unique_url", url);
+        cursor = col.find(query);
+        
+        if(cursor.count() == 0)
+        {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
      * Get the object for the database that this class uses.
      * 
      * @return the MongoDB MongoClient object that this class uses

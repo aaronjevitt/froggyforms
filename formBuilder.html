@@ -2,34 +2,47 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Example formBuilder</title>
+	<title>FroggyFormBuilder</title>
+	<style>
+		body{
+			background-image: url("builderFrog.jpg");
+			background-repeat: round;
+		}
+	</style>
 </head>
 <body>
 	<div id="fb-editor"></div>
 
-	<div>
-		<button type="button" id="publishButton">Publish Form</button>
-	</div>
+	<form action="FroggyPublisher" method="post">
+		<div>
+			<button type="button" id="publishButton">Publish Form</button>
+			<div id="jsonString" name="jsonString" style="visibility: hidden;"></div>
+		</div>
+	</form>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
-
 	<script>
 		jQuery(function($)
 		{
+			$(document.getElementById('fb-editor')).formBuilder();
 
-		$(document.getElementById('fb-editor')).formBuilder();
+			var fbEditor = document.getElementById('build-wrap');
+			var formBuilder = $(fbEditor).formBuilder();
 
-		var fbEditor = document.getElementById('build-wrap');
-		var formBuilder = $(fbEditor).formBuilder();
-
-		document.getElementById('publishButton').addEventListener('click', function()
-		{
-			var frogData = (formBuilder.actions.getData('json'));
-			console.log(frogData);
-		});
-
+			document.getElementById('publishButton').addEventListener('click', function()
+			{
+				var frogData = (formBuilder.actions.getData('json'));
+				console.log(frogData);
+				if(frogData == "[]")
+				{
+					alert("You can not publish an empty form.");
+				}
+				// var jsonText = document.getElementById("jsonString");
+				// jsonText.innerHTML = frogData;
+				document.getElementById("jsonString").innerHTML = frogData;
+			});
 		});
 	</script>
 </body>

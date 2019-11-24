@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example formBuilder</title>
+</head>
+<body>
+	<div id="fb-editor"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js">
+	</script>
+	<script src="https://formbuilder.online/assets/js/form-builder.min.js">
+	</script>
+	</script>
+	<script>
+		var $fbEditor = $(document.getElementById('fb-editor')),
+	    $formContainer = $(document.getElementById('fb-rendered-form')),
+	    fbOptions = {
+	      disabledActionButtons: ['data', 'save'],
+	    },
+	    formBuilder = $fbEditor.formBuilder(fbOptions);
+	</script>
+</body>
+</html>

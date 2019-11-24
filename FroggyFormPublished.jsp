@@ -6,21 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Form Published!</title>
 <script>
-      window.onload = load()
-      {
-        document.getElementById("msg").innerHTML = "sup";
-        // var uniqueURL = request.getAttribute("unique_url");
-        // var message = "The URL to fill out this form is FroggyForm.bike/" + uniqueURL;
-        console.log("window.onload");
-        document.getElementById("onload").click();
-      };
-
-      function realOnLoad(str)
-      {
-        var message = "The URL to fill out this form is FroggyForm.bike/" + str;
-        console.log(message);
-        document.getElementById("msg").innerHTML = message;
-      }
+      // window.onload = function()
+      // {
+      //   document.getElementById("msg").innerHTML = "sup";
+      //   // var uniqueURL = request.getAttribute("unique_url");
+      //   // var message = "The URL to fill out this form is FroggyForm.bike/" + uniqueURL;
+      //   console.log("window.onload");
+      //   document.getElementById("onload").click();
+      // };
+      //
+      // function realOnLoad(str)
+      // {
+      //   var message = "The URL to fill out this form is FroggyForm.bike/" + str;
+      //   console.log(message);
+      //   document.getElementById("msg").innerHTML = message;
+      // }
 
 </script>
 <style>
@@ -32,15 +32,15 @@ body{
 
 <body>
   <%
-    String url = request.getAttribute("unique_url");
+    String url = "The URL to fill out this form is FroggyForm.bike/" + ((String)request.getAttribute("unique_url"));
   %>
 
   <h1 style="color: green">Form Published!</h1>
-  <h2 id="msg" style="color: green">The URL to fill out this form is FroggyForm.bike/nonexistantURL<h2>
+  <h2 id="msg" style="color: green"><%=url %><h2>
   <br></br>
   <form action="PublishedPage" method="post">
     <input type="submit" value="Back to homepage" name="homepage"/>
   </form>
 
-  <button type = "button" id="onload" onclick="realOnLoad(<%=url %>)" style="visibility: hidden"></button>
+  <!-- <button type = "button" id="onload" onclick="realOnLoad(<%=url %>)" style="visibility: hidden"></button> -->
 </body>

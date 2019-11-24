@@ -222,11 +222,28 @@
 		
 		function submit()
 		{
-			// Add "disabled":true to end of each field to prevent editing
+			// Disable editing and fix file upload fields
 			var length = $(fbRender).formRender("userData").length;
 			var i;
 			for(i = 0; i < length; i++) // Go through each field
 			{
+				// Add preview/download to file upload fields
+				if($(fbRender).formRender("userData")[i].type == "file")
+				{
+					var filetype = "jpg".toLowerCase(); // Placeholder
+					if(filetype == "txt" || filetype == "doc" || filetype == "docx" || filetype == "pdf") // Previewable
+					{
+						$(fbRender).formRender("userData")[i].label += '<br><iframe src="tester.pdf" style="width:600px; height:500px;"frameborder="0"></iframe>';
+						// ^ Placeholder
+					}
+					else // Download-only
+					{
+						$(fbRender).formRender("userData")[i].label += '<br><a href="tester.jpg" target="_blank">Download File</a>';
+						// ^ Placeholder
+					}
+				}
+				
+				// Disable editing
 				$(fbRender).formRender("userData")[i].disabled = true;
 			}
 			

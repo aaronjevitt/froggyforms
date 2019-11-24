@@ -5,6 +5,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
+import java.util.ArrayList;
 
 public class DatabaseController {
     
@@ -131,6 +132,64 @@ public class DatabaseController {
         return url;
     }
     
+    public ArrayList<String> getAllFormURLS()
+    {
+        DBCollection col = null;
+        BasicDBObject form = null;
+        DBCursor cursor = null;
+        String url = null;
+        ArrayList<String> urls = new ArrayList<String>();
+        
+        if(client == null)
+        {
+            System.out.println("Connecrtion not established before trying to get last form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection("published_forms");
+        cursor = col.find();
+        
+        int i = 0;
+        while(cursor.hasNext())
+        {
+            form = (BasicDBObject)cursor.next();
+            url = form.getString("unique_url");
+            urls.add("\"" + url + "\"");
+            System.out.printf("url added: %s\n", url);
+            i++;
+        }
+        
+        return urls;
+    }
+    
+    public String getSubmissionJson(String url, int sub)
+    {
+        DBCollection col = null;
+        DBObject query = null;
+        DBCursor cursor = null;
+        String json = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to get a form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection(url);
+        
+        query = new BasicDBObject();
+        query.put("number", sub);
+        cursor = col.find(query);
+        
+        while(cursor.hasNext())
+        {
+            BasicDBObject result = (BasicDBObject)cursor.next();
+            json = result.getString("json");
+        }
+        
+        return json;
+    }
+    
     public String getFormJson(String url)
     {
         DBCollection col = null;
@@ -237,6 +296,20 @@ public class DatabaseController {
         }
         
         col = client.getDB("forms").getCollection(url);
+        return col.count();
+    }
+    
+    public long countForms()
+    {
+        DBCollection col = null;
+        
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to count forms.");
+            return -1;
+        }
+        
+        col = client.getDB("forms").getCollection("published_forms");
         return col.count();
     }
     

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mongo.DatabaseController;
 
@@ -33,10 +34,14 @@ public class AdminController extends HttpServlet {
                 {
                     DatabaseController db = new DatabaseController();
                     db.connect();
-                    System.out.println(db.getLastForm());
                     
-                    RequestDispatcher req = request.getRequestDispatcher("dummyview.jsp");
+                    RequestDispatcher req = request.getRequestDispatcher("FormView.jsp");
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("url_array", db.getAllFormURLS());
+                    session.setAttribute("num_urls", db.countForms());
                     db.close();
+                    
                     req.include(request, response);
                 }
                 else if(delete != null)

@@ -9,15 +9,16 @@
 <body>
 	<form id="fb-render" method="post" action="submit"></form>
 	<button type="button" id="get-user-data" name="submit-form">Get Updated formData</button>
-        <button type="submit" form="fb-render">Click me!</button>
-
+	<input type="submit" form="fb-render" />
+ 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
 	<script>
 		const getUserDataBtn = document.getElementById("get-user-data");
 		const fbRender = document.getElementById("fb-render");
-
+		
+		
 		// Check that all required fields are filled out
 		function validate()
 		{
@@ -97,7 +98,8 @@
 		}
 		
 		jQuery(function($) {
-		  const formData = JSON.stringify(${formdata});
+                  const datadata = ${formdata};
+		  const formData = JSON.stringify(datadata);
 		  $(fbRender).formRender({ formData });
 		  getUserDataBtn.addEventListener(
 			"click",
@@ -116,6 +118,5 @@
 		  );
 		});
 	</script>
-                  
 </body>
 </html>

@@ -1,26 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< Updated upstream
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>MongoDBWebapp</display-name>
-	
-	<welcome-file-list>
-		<welcome-file>login_logout.jsp</welcome-file>
-	</welcome-file-list>
-        <servlet>  
-    <description></description>  
-    <display-name>FroggyLogin</display-name>  
-    <servlet-name>FroggyLogin</servlet-name>  
-    <servlet-class>controllers.FroggyLogin</servlet-class>  
-  </servlet>  
-  <servlet-mapping>  
-    <servlet-name>FroggyLogin</servlet-name>  
-    <url-pattern>/FroggyLogin</url-pattern>  
-  </servlet-mapping>  
-</web-app>
-=======
 <web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>MongoDBWebapp</display-name>
     <welcome-file-list>
@@ -93,4 +71,3 @@
     <url-pattern>/SubmissionController/submit</url-pattern>
 </servlet-mapping>
 </web-app>
->>>>>>> Stashed changes

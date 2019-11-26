@@ -14,7 +14,8 @@ public class FroggyLogin extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
- 
+    
+        @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
@@ -26,7 +27,7 @@ public class FroggyLogin extends HttpServlet {
 		}
 		else if(username.compareTo("admin") == 0 && password.compareTo("password") == 0)
 		{
-			RequestDispatcher req = request.getRequestDispatcher("login_success.jsp");
+			RequestDispatcher req = request.getRequestDispatcher("homepage.jsp");
 			req.forward(request, response);
 		}
 		else

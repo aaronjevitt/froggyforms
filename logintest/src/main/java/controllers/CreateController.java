@@ -7,20 +7,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import mongo.DatabaseController;
 
-public class RealSubmissionController extends HttpServlet {
+public class CreateController extends HttpServlet {
  
-    public RealSubmissionController() {
+    public CreateController() {
         super();
         // TODO Auto-generated constructor stub
     }
     
         @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            DatabaseController db = new DatabaseController();
-            System.out.println("bloop");
+		// TODO Auto-generated method stub
+		String create = request.getParameter("publish");
+		
+		if(create != null)
+		{
+                    RequestDispatcher req = request.getRequestDispatcher("dummycreate.jsp");
+                    req.include(request, response);
+		}
 	}
  
 }

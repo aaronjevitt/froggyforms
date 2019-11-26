@@ -223,22 +223,38 @@
 		function submit()
 		{
 			// Disable editing and fix file upload fields
+			var froggyFile;
+			var fileType;
+			
 			var length = $(fbRender).formRender("userData").length;
 			var i;
+			var j;
 			for(i = 0; i < length; i++) // Go through each field
 			{
 				// Add preview/download to file upload fields
 				if($(fbRender).formRender("userData")[i].type == "file")
 				{
-					var filetype = "jpg".toLowerCase(); // Placeholder
-					if(filetype == "txt" || filetype == "doc" || filetype == "docx" || filetype == "pdf") // Previewable
+					froggyFile = document.getElementById($(fbRender).formRender("userData")[i].name);
+					console.log(froggyFile);
+					
+					// Determine fileType
+					for(j = 0; j < froggyFile.files[0].type.length; j++)
 					{
-						$(fbRender).formRender("userData")[i].label += '<br><iframe src="tester.pdf" style="width:600px; height:500px;"frameborder="0"></iframe>';
+						if(froggyFile.files[0].type[j] == "/")
+						{
+							fileType = froggyFile.files[0].type.substr(j + 1);
+							console.log(fileType);
+						}
+					}
+					
+					if(fileType == "txt" || fileType == "doc" || fileType == "docx" || fileType == "pdf") // Previewable file
+					{	
+						$(fbRender).formRender("userData")[i].label += '<br><iframe src="' + froggyFile.files[0].name + '" style="width:600px; height:500px;"frameborder="0"></iframe>';
 						// ^ Placeholder
 					}
-					else // Download-only
+					else // Download-only file
 					{
-						$(fbRender).formRender("userData")[i].label += '<br><a href="tester.jpg" target="_blank">Download File</a>';
+						$(fbRender).formRender("userData")[i].label += '<br><a href="' + froggyFile.files[0].name + '" target="_blank">Download File</a>';
 						// ^ Placeholder
 					}
 				}
@@ -252,8 +268,8 @@
 		}
 		
 		jQuery(function($) {
-		  const formData = JSON.stringify(originalFormData);
-		  $(fbRender).formRender({formData});
+			const formData = JSON.stringify(originalFormData);
+			$(fbRender).formRender({formData});
 		});
 	</script>
 </body>

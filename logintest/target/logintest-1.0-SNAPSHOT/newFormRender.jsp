@@ -7,6 +7,7 @@
     <title>Example Blank Form Render</title>
 </head>
 <body>
+
 	<form id="fb-render" method="post" action="submit"></form>
 	<button type="button" id="get-user-data" name="submit-form">Get Updated formData</button>
 	<input type="submit" form="fb-render" />
@@ -17,8 +18,7 @@
 	<script>
 		const getUserDataBtn = document.getElementById("get-user-data");
 		const fbRender = document.getElementById("fb-render");
-		
-		
+
 		// Check that all required fields are filled out
 		function validate()
 		{
@@ -98,7 +98,7 @@
 		}
 		
 		jQuery(function($) {
-                  const datadata = ${formdata};
+          const datadata = ${formdata};
 		  const formData = JSON.stringify(datadata);
 		  $(fbRender).formRender({ formData });
 		  getUserDataBtn.addEventListener(

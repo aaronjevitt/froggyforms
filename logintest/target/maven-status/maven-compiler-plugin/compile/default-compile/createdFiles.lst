@@ -1,0 +1,8 @@
+controllers\PublishedPage.class
+controllers\SubmissionController.class
+controllers\FroggyPublisher.class
+controllers\AdminController.class
+mongo\DatabaseController.class
+controllers\CreateController.class
+controllers\RealSubmissionController.class
+controllers\FroggyLogin.class

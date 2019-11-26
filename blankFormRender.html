@@ -250,12 +250,10 @@
 					if(fileType == "txt" || fileType == "doc" || fileType == "docx" || fileType == "pdf") // Previewable file
 					{	
 						$(fbRender).formRender("userData")[i].label += '<br><iframe src="' + froggyFile.files[0].name + '" style="width:600px; height:500px;"frameborder="0"></iframe>';
-						// ^ Placeholder
 					}
 					else // Download-only file
 					{
 						$(fbRender).formRender("userData")[i].label += '<br><a href="' + froggyFile.files[0].name + '" target="_blank">Download File</a>';
-						// ^ Placeholder
 					}
 				}
 				
@@ -263,7 +261,7 @@
 				$(fbRender).formRender("userData")[i].disabled = true;
 			}
 			
-			// "Submit"
+			// "Submit" Placeholder
 			window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
 		}
 		

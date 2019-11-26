@@ -1,4 +1,8 @@
-controllers\CreateController.class
+controllers\PublishedPage.class
+controllers\SubmissionController.class
+controllers\FroggyPublisher.class
 controllers\AdminController.class
-controllers\FroggyLogin.class
 mongo\DatabaseController.class
+controllers\CreateController.class
+controllers\RealSubmissionController.class
+controllers\FroggyLogin.class

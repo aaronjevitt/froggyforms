@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import mongo.DatabaseController;
 
 public class SubmissionController extends HttpServlet {
  
@@ -16,18 +18,20 @@ public class SubmissionController extends HttpServlet {
     }
     
         @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String submit = request.getParameter("submit-form");
-		//String view = request.getParameter("view");
-                //String delete = request.getParameter("delete");
-		
-		if(submit != null)
-		{
-                    System.out.println("Button click recognized");
-                    //RequestDispatcher req = request.getRequestDispatcher("formBuilder.jsp");
-                    //req.include(request, response);
-		}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            DatabaseController db = new DatabaseController();
+            String pathinfo = request.getPathInfo();
+            pathinfo = pathinfo.substring(1);
+            System.out.println(pathinfo);
+            db.connect();
+            request.setAttribute("formdata", db.getFormJson(pathinfo));
+                    
+            //RequestDispatcher req = request.getRequestDispatcher("newFormRender.jsp");
+            RequestDispatcher req = getServletContext().getRequestDispatcher("/newFormRender.jsp");
+            req.forward(request, response);
+            db.close();
+            
 	}
  
 }

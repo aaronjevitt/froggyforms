@@ -54,4 +54,20 @@
         <servlet-name>PublishedPage</servlet-name>
         <url-pattern>/PublishedPage</url-pattern>
     </servlet-mapping>
+       <servlet>
+    <servlet-name>SubmissionController</servlet-name>
+    <servlet-class>controllers.SubmissionController</servlet-class>
+</servlet>
+    <servlet-mapping>
+    <servlet-name>SubmissionController</servlet-name>
+    <url-pattern>/SubmissionController/*</url-pattern>
+</servlet-mapping>
+       <servlet>
+    <servlet-name>RealSubmissionController</servlet-name>
+    <servlet-class>controllers.RealSubmissionController</servlet-class>
+</servlet>
+    <servlet-mapping>
+    <servlet-name>RealSubmissionController</servlet-name>
+    <url-pattern>/SubmissionController/submit</url-pattern>
+</servlet-mapping>
 </web-app>

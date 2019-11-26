@@ -26,9 +26,8 @@ public class SubmissionController extends HttpServlet {
             db.connect();
             request.setAttribute("formdata", db.getFormJson(pathinfo));
                     
-            //RequestDispatcher req = request.getRequestDispatcher("newFormRender.jsp");
-            RequestDispatcher req = getServletContext().getRequestDispatcher("/newFormRender.jsp");
-            req.forward(request, response);
+            RequestDispatcher req = getServletContext().getRequestDispatcher("/formRender.jsp");
+            req.include(request, response);
             db.close();
             
 	}

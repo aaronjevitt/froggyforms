@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,8 +8,7 @@
 </head>
 <body>
 	<form id="fb-render" method="post" action="submit"></form>
-	<button type="button" id="get-user-data" name="submit-form">Get Updated formData</button>
-	<input type="submit" form="fb-render" />
+	<button type="button" id="get-user-data" name="submit-form" onclick="performAjaxSubmit()">Submit</button>
  
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -27,7 +25,6 @@
 			var i;
 			for(i = 0; i < length; i++) // Go through each field
 			{
-				console.log($(fbRender).formRender("userData")[i]);
 				if($(fbRender).formRender("userData")[i].required === true)
 				{
 					switch ($(fbRender).formRender("userData")[i].type)
@@ -89,7 +86,6 @@
 							break;
 						
 						default:
-							console.log("Non-implemented type");
 							break;
 					}
 				}
@@ -97,56 +93,47 @@
 			
 			return true;
 		}
-        /*        
-                 function performAjaxSubmit() {
+                
+                                 function performAjaxSubmit() {
+                        if(validate() === true)
+				{
+					var datastring = JSON.stringify($(fbRender).formRender("userData"));
+                                        console.log("bloop");
+                                        var form = document.getElementById("fb-render");
+                                        console.log(form);
+                                        var formData = new FormData(form);
+                                        console.log(formData);
+                                        formData.append("formjson", datastring);
+                                        var xhr = new XMLHttpRequest();       
 
-        var datastring = JSON.stringify($(fbRender).formRender("userData"));
+                                        xhr.open("POST","submit", true);
 
-        var form = document.getElementById('fb-render');
-        var formData = new FormData(form);
-        formData.append("formjson", datastring);
-        var xhr = new XMLHttpRequest();       
+                                        xhr.send(formData);
 
-        xhr.open("POST","submit", true);
+                                        xhr.onload = function(e) {
 
-        xhr.send(formdata);
+                                            if (this.status == 200) {
 
-        xhr.onload = function(e) {
+                                               alert(this.responseText);
 
-            if (this.status == 200) {
+                                            }
 
-               alert(this.responseText);
-
-            }
-
-        };                    
+                                        };   
+                                        }
+				else
+				{
+					window.alert("Please fill in all required forms before submitting");
+				}
+                
 
     }   
-    
-         */
 		
 		jQuery(function($) {
                   const datadata = ${formdata};
 		  const formData = JSON.stringify(datadata);
 		  $(fbRender).formRender({ formData });
-		  getUserDataBtn.addEventListener(
-			"click",
-			() => {
-				if(validate() === true)
-				{
-					//performAjaxSubmit();
-					window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
-				}
-				else
-				{
-					window.alert("Please fill in all required forms before submitting");
-				}
-			},
-			false
-		  );
+
 		});
-                  
-                  
+	</script>
 </body>
 </html>
-

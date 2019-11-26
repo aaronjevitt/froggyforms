@@ -238,11 +238,11 @@
 					console.log(froggyFile);
 					
 					// Determine fileType
-					for(j = 0; j < froggyFile.files[0].type.length; j++)
+					for(j = 0; j < froggyFile.files[0].name.length; j++)
 					{
-						if(froggyFile.files[0].type[j] == "/")
+						if(froggyFile.files[0].name[j] == ".") // will fail if more than one period
 						{
-							fileType = froggyFile.files[0].type.substr(j + 1);
+							fileType = froggyFile.files[0].name.substr(j + 1);
 							console.log(fileType);
 						}
 					}

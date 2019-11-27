@@ -1,0 +1,3 @@
+got download to work but i need to get the view to work.
+I think i need to use a post or get to send the link to preview the file.
+The file has to be located in \apache-tomcat-9.0.27\bin\download under what ever the ULR name is(im using qwer).

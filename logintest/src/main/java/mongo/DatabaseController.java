@@ -6,6 +6,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import java.util.ArrayList;
+import org.bson.types.ObjectId;
 
 public class DatabaseController {
     
@@ -82,8 +83,9 @@ public class DatabaseController {
      * @param json              the entirety of the JSON representing the layout 
      *                          of the form and what was put into each field
      * @param submissionNumber  the index for the new submission
+     * @return 
      */
-    public void addSubmission(String url, String json, int submissionNumber)
+    public ObjectId addSubmission(String url, String json)
     {
         DBCollection col = null;
         BasicDBObject sub = null;
@@ -91,15 +93,16 @@ public class DatabaseController {
         if(client == null)
         {
             System.out.println("Connection not established before trying to add submission.");
-            return;
+            return null;
         }
         
         col = client.getDB("forms").getCollection(url);
         sub = new BasicDBObject();
         
-        sub.put("number", submissionNumber);
+        //sub.put("number", submissionNumber);
         sub.put("json", json);
         col.insert(sub);
+        return sub.getObjectId("_id");
     }
     
     /**
@@ -189,6 +192,7 @@ public class DatabaseController {
         
         return json;
     }
+    
     
     public String getFormJson(String url)
     {

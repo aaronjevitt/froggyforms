@@ -103,6 +103,7 @@
                                         console.log(form);
                                         var formData = new FormData(form);
                                         console.log(formData);
+                                        formData.append("unique_url", "${uniqurl}");
                                         formData.append("formjson", datastring);
                                         var xhr = new XMLHttpRequest();       
 

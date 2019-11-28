@@ -24,6 +24,7 @@ public class SubmissionController extends HttpServlet {
             pathinfo = pathinfo.substring(1);
             System.out.println(pathinfo);
             db.connect();
+            request.setAttribute("uniqurl", pathinfo);
             request.setAttribute("formdata", db.getFormJson(pathinfo));
                     
             RequestDispatcher req = getServletContext().getRequestDispatcher("/formRender.jsp");

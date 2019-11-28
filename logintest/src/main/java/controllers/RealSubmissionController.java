@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import mongo.DatabaseController;
+import org.bson.types.ObjectId;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
   maxFileSize = 1024 * 1024 * 5, 
@@ -31,30 +33,32 @@ public class RealSubmissionController extends HttpServlet
 public void doPost(HttpServletRequest request,HttpServletResponse response)
 throws IOException, ServletException
 {
+    ObjectId objectid;
+    DatabaseController db = new DatabaseController();
+    db.connect();
+    String url = request.getParameter("unique_url");
 PrintWriter out = response.getWriter();
     String formdata = request.getParameter("formjson");
-
-    out.println("urmom"+ formdata);
-String uploadPath = getServletContext().getRealPath("") + File.separator + com.baeldung.Constants.UPLOAD_DIRECTORY;
-        System.out.println(uploadPath);
+    db.addSubmission(url, formdata);
+    objectid = db.getLastObjectID(url);
+    System.out.println(objectid.toString());
+    out.println(url + " " + formdata);
+String uploadPath = getServletContext().getRealPath("") + File.separator + com.baeldung.Constants.UPLOAD_DIRECTORY + File.separator + url + File.separator + objectid.toString();
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())
             uploadDir.mkdir();
 
         try {
             String fileName = "";
-            System.out.println("1");
             for (Part part : request.getParts()) {
                 fileName = getFileName(part);
-                part.write(uploadPath + File.separator + fileName);
+                if (!"default.file".equals(fileName))
+                    part.write(uploadPath + File.separator + fileName);
             }
             request.setAttribute("message", "File " + fileName + " has uploaded successfully!");
         } catch (FileNotFoundException fne) {
-            System.out.println("2");
             request.setAttribute("message", "There was an error: " + fne.getMessage());
         }
-        System.out.println("3");
-        getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
-        System.out.println("4");
+        //getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
 }
 }

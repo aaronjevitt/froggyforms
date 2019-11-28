@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Example Blank Form Render</title>
+    <title>Froggy Forms</title>
 </head>
 <body>
 	<form id="fb-render" method="post" action="submit"></form>

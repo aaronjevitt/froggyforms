@@ -70,4 +70,20 @@
         <servlet-name>SubmissionController</servlet-name>
         <url-pattern>/f/submit</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SubViewController</servlet-name>
+        <servlet-class>controllers.SubViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubViewController</servlet-name>
+        <url-pattern>/subview</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FormViewController</servlet-name>
+        <servlet-class>controllers.FormViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormViewController</servlet-name>
+        <url-pattern>/formview</url-pattern>
+    </servlet-mapping>
 </web-app>

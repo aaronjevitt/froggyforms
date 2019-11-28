@@ -1,5 +1,6 @@
 package controllers;
 
+import static constants.Constants.UPLOAD_DIRECTORY;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class RealSubmissionController extends HttpServlet
             if (content.trim().startsWith("filename"))
                 return content.substring(content.indexOf("=") + 2, content.length() - 1);
         }
-        return com.baeldung.Constants.DEFAULT_FILENAME;
+        return constants.Constants.DEFAULT_FILENAME;
     }
     
 public void doPost(HttpServletRequest request,HttpServletResponse response)
@@ -35,21 +36,22 @@ throws IOException, ServletException
 {
     ObjectId objectid;
     DatabaseController db = new DatabaseController();
+    String url;
+    String formdata;
+    String uploadPath;
     db.connect();
     
-    String url = request.getParameter("unique_url");
-    PrintWriter out = response.getWriter();
-
-    String formdata = request.getParameter("formjson");
+    url = request.getParameter("unique_url");   
+    formdata = request.getParameter("formjson");      
     objectid = db.addSubmission(url, formdata);
-    System.out.println(objectid.toString());
+    
+    PrintWriter out = response.getWriter();   
     out.println(url + " " + formdata);
     
-String uploadPath = getServletContext().getRealPath("") + File.separator + com.baeldung.Constants.UPLOAD_DIRECTORY + File.separator + url + File.separator + objectid.toString();
-        File uploadDir = new File(uploadPath);
+    uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY + File.separator + url + File.separator + objectid.toString();
+    File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())
             uploadDir.mkdir();
-
         try {
             String fileName = "";
             for (Part part : request.getParts()) {

@@ -1,4 +1,4 @@
-package com.baeldung;
+package constants;
 
 public class Constants {
 

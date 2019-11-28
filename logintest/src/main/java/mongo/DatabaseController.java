@@ -83,8 +83,9 @@ public class DatabaseController {
      * @param json              the entirety of the JSON representing the layout 
      *                          of the form and what was put into each field
      * @param submissionNumber  the index for the new submission
+     * @return 
      */
-    public void addSubmission(String url, String json)
+    public ObjectId addSubmission(String url, String json)
     {
         DBCollection col = null;
         BasicDBObject sub = null;
@@ -92,7 +93,7 @@ public class DatabaseController {
         if(client == null)
         {
             System.out.println("Connection not established before trying to add submission.");
-            return;
+            return null;
         }
         
         col = client.getDB("forms").getCollection(url);
@@ -101,6 +102,7 @@ public class DatabaseController {
         //sub.put("number", submissionNumber);
         sub.put("json", json);
         col.insert(sub);
+        return sub.getObjectId("_id");
     }
     
     /**
@@ -191,35 +193,6 @@ public class DatabaseController {
         return json;
     }
     
-    public ObjectId getLastObjectID(String url)
-    {
-         DBCollection col = null;
-        DBObject query = null;
-        DBCursor cursor = null;
-        String id = null;
-        ObjectId objid = new ObjectId();
-        if(client == null)
-        {
-            System.out.println("Connection not established before trying to get a form.");
-            return null;
-        }
-        
-         col = client.getDB("forms").getCollection(url);
-         
-        query = new BasicDBObject();
-        query.put("unique_url", url);
-        cursor = col.find(query);
-        
-        while(cursor.hasNext())
-        {
-            BasicDBObject result = (BasicDBObject)cursor.next();
-            objid = result.getObjectId("_id");
-            System.out.println(result.getObjectId("_id"));
-        }
-        
-        return objid;
-        
-    }
     
     public String getFormJson(String url)
     {

@@ -36,13 +36,15 @@ throws IOException, ServletException
     ObjectId objectid;
     DatabaseController db = new DatabaseController();
     db.connect();
+    
     String url = request.getParameter("unique_url");
-PrintWriter out = response.getWriter();
+    PrintWriter out = response.getWriter();
+
     String formdata = request.getParameter("formjson");
-    db.addSubmission(url, formdata);
-    objectid = db.getLastObjectID(url);
+    objectid = db.addSubmission(url, formdata);
     System.out.println(objectid.toString());
     out.println(url + " " + formdata);
+    
 String uploadPath = getServletContext().getRealPath("") + File.separator + com.baeldung.Constants.UPLOAD_DIRECTORY + File.separator + url + File.separator + objectid.toString();
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())

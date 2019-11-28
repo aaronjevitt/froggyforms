@@ -58,7 +58,7 @@
                                 var value = activeform.options[activeform.selectedIndex].value;
 				var submissionList = document.getElementById('submissionSelect');
 				var formData = new FormData(form);
-                                
+                                submissionList.options.length = 0;
                                 var response;
                                 formData.append("unique_url", value);
                                         var xhr = new XMLHttpRequest();       

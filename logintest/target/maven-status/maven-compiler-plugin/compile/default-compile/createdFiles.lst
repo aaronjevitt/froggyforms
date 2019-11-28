@@ -3,6 +3,7 @@ controllers\SubmissionController.class
 controllers\FroggyPublisher.class
 controllers\AdminController.class
 mongo\DatabaseController.class
+controllers\FormRequestController.class
 controllers\CreateController.class
-controllers\RealSubmissionController.class
+constants\Constants.class
 controllers\FroggyLogin.class

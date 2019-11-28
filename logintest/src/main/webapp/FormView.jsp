@@ -15,9 +15,11 @@
 		<select class="form-control"  id='submissionSelect' name='submissionSelect'></select>
 	</form>
 
-	<button type="button" id="view-form">View Form Submission</button>
+	<button type="button" id="view-form" onclick = "getSub()">View Form Submission</button>
 
 	<p></p>
+        
+        <p id = "Test">Choose an option:</p>
 
 	<div class="fb-render">
 		<textarea id="fb-template">
@@ -30,17 +32,55 @@
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
 	<script>
 		const viewFormBtn = document.getElementById("view-form");
-		viewFormBtn.addEventListener(
-			"click",
-			() => {
+		//viewFormBtn.addEventListener(
+		//	"click",
+		//	() => 
+//                                var xhttp = new XMLHttpRequest();
+//                                xhttp.onreadystatechange = function()
+//                                {
+//                                  if(this.readyState == 4 && this.status == 200)
+//                                  {
+//                                    document.getElementById("Test").innerHTML = this.responseText;
+//                                  }
+//                                  else
+//                                  {
+//                                    window.alert("Failed to get submission from the server");
+//                                  }
+//                                };
+//                                xhttp.open("GET", "FormViewController", true);
+//                                xhttp.send();
+//                              },
+                        function getSub(){
+                            document.getElementById("invisi-press").value = "pressed";
+                            document.getElementById("invisi-press").innerHTML = "pressed";
 				getSubmission();
-			},
-			false
-		);
+                                
+                                $.ajax({
+                                   type:"GET",
+                                   url:"FormViewController",
+                                   data: {
+                                       view_form: "yes"
+                                   },
+                                   success: function() {
+                                       console.log("in ajax function");
+                                       var xhttp = new XMLHttpRequest();
+                                       xhttp.open("GET", "FormViewController", true);
+                                       xhttp.send();
+                                       console.log(${test_att});
+                                   }
+                                });
+                                
+                            //document.getElementById("invisi-press").value = "notpressed";
+                            //document.getElementById("invisi-press").innerHTML = "notpressed";
+			}
+                        //,
+			// false
+		// );
 		var submittedFormData = [];
 		$(document).ready(function () { // Populate formList
 			var formList = document.getElementById('formSelect');
                         var array = ${url_array};
+                        var submissions = "";
                         
 			for(var i = 0; i < ${num_urls}; i++)
 			{
@@ -91,5 +131,7 @@
 		}
 		// Note - checkbox selections, when field required, do not render; issue with formBuilder https://github.com/kevinchappell/formBuilder/issues/910
 	</script>
+                        
+                        <input type="text" name="invisi-press" id="invisi-press"></input>
 </body>
 </html>

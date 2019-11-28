@@ -34,6 +34,12 @@
         <servlet-name>PublishedPage</servlet-name>
         <servlet-class>controllers.PublishedPage</servlet-class>
     </servlet>
+    <servlet>
+        <description/>
+        <display-name>FormViewController</display-name>
+        <servlet-name>FormViewController</servlet-name>
+        <servlet-class>controllers.FormViewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FroggyHome</servlet-name>
         <url-pattern>/FroggyHome</url-pattern>
@@ -70,4 +76,9 @@
     <servlet-name>RealSubmissionController</servlet-name>
     <url-pattern>/SubmissionController/submit</url-pattern>
 </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>FormViewController</servlet-name>
+        <url-pattern>/FormViewController</url-pattern>
+    </servlet-mapping>
 </web-app>

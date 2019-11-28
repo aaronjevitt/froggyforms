@@ -5,6 +5,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
+import org.bson.types.ObjectId;
 import java.util.ArrayList;
 
 public class DatabaseController {
@@ -19,7 +20,7 @@ public class DatabaseController {
     {
         try
         {
-            client = new MongoClient(ip, 27017);
+            client = new MongoClient(this.ip, 27017);
             
             if(client != null)
             {
@@ -83,10 +84,11 @@ public class DatabaseController {
      *                          of the form and what was put into each field
      * @param submissionNumber  the index for the new submission
      */
-    public void addSubmission(String url, String json, int submissionNumber)
+    public void addSubmission(String url, String json)
     {
         DBCollection col = null;
         BasicDBObject sub = null;
+        int subcount;
         
         if(client == null)
         {
@@ -96,9 +98,13 @@ public class DatabaseController {
         
         col = client.getDB("forms").getCollection(url);
         sub = new BasicDBObject();
+        subcount = (int)col.count() + 1;
         
-        sub.put("number", submissionNumber);
+        sub.put("number", subcount);
         sub.put("json", json);
+        //ObjectId id = (ObjectId)sub.get("_id");
+        //System.out.println("added submission");
+        //System.out.println(id.toString());
         col.insert(sub);
     }
     

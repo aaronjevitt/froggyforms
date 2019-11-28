@@ -8,6 +8,7 @@
 </head>
 <body>
 	<form id="form">
+            
 		<h4>Form URL:</h4>
 		<select class="form-control"  id='formSelect' name='formSelect' onClick="getFormSubmissions()"></select>
 
@@ -19,10 +20,7 @@
 
 	<p></p>
 
-	<div class="fb-render">
-		<textarea id="fb-template">
-			<form-template></form-template>
-		</textarea>
+	<div class="form1" id = "form1">
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -92,18 +90,28 @@
 			// submittedFormData = list of forms from database[formList.selectedIndex][submissionList.selectedIndex];
 			submittedFormData = [{"type":"checkbox-group","required":true,"label":"checko mehico","name":"checkbox-group-1574027405290","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-1","option-2","option-3"],"disabled":true},{"type":"date","required":true,"label":"dato dato","className":"form-control","name":"date-1574029037726","userData":["2019-11-24"],"disabled":true},{"type":"file","required":true,"label":"File Upload<br><a href=\"tester.jpg\" target=\"_blank\">Download File</a>","className":"form-control","name":"file-1574027410621","subtype":"file","disabled":true},{"type":"number","required":true,"label":"numero","className":"form-control","name":"number-1574028946834","userData":["222"],"disabled":true},{"type":"radio-group","required":true,"label":"rodeo radio","name":"radio-group-1574029006581","values":[{"label":"Option 1","value":"option-1"},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-3"],"disabled":true},{"type":"select","required":true,"label":"selecto mundo","className":"form-control","name":"select-1574027398028","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}],"userData":["option-2"],"disabled":true},{"type":"text","required":true,"label":"texto t-trexto","className":"form-control","name":"text-1574027401302","subtype":"text","userData":["Here be the text"],"disabled":true},{"type":"textarea","required":true,"label":"paragraphical interface","className":"form-control","name":"textarea-1574029133288","subtype":"textarea","userData":["And o'er here\r\nbe the paragraphs\r\nof endless days"],"disabled":true},{"type":"hidden","name":"hidden-1574202434916","userData":[""],"disabled":true}];
                         var FormData = formdata;
-// ^ Placeholder
+                        console.log(typeof(formdata));
+                        //var container = document.getElementById('form1');
 			// Render form submission
 			jQuery(function($)
 			{
-				var fbTemplate = document.getElementById('fb-template');
-                                
-				$('.fb-render').formRender({
+                            $('.form1').formRender({
 					dataType: 'json',
 					formData: FormData
+                                        
 				});
 			});
+                        //var form = document.getElementById("form1");
+                        $("#form1 :input").prop("disabled", true);
+                        console.log(form1);
+
+                       // var elements = form.elements;
+                       // for (var i = 0, len = elements.length; i < len; ++i) {
+                        //     elements[i].readOnly = true;
+                        //}
 		}
+                
+
                 
                                         function getFormSubmission() {
                                         console.log("bloop");

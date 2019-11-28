@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -96,6 +97,33 @@
 			
 			return true;
 		}
+        /*        
+                 function performAjaxSubmit() {
+
+        var datastring = JSON.stringify($(fbRender).formRender("userData"));
+
+        var form = document.getElementById('fb-render');
+        var formData = new FormData(form);
+        formData.append("formjson", datastring);
+        var xhr = new XMLHttpRequest();       
+
+        xhr.open("POST","submit", true);
+
+        xhr.send(formdata);
+
+        xhr.onload = function(e) {
+
+            if (this.status == 200) {
+
+               alert(this.responseText);
+
+            }
+
+        };                    
+
+    }   
+    
+         */
 		
 		jQuery(function($) {
                   const datadata = ${formdata};
@@ -106,7 +134,7 @@
 			() => {
 				if(validate() === true)
 				{
-					// "submit"
+					//performAjaxSubmit();
 					window.alert(window.JSON.stringify($(fbRender).formRender("userData")));
 				}
 				else
@@ -117,6 +145,8 @@
 			false
 		  );
 		});
-	</script>
+                  
+                  
 </body>
 </html>
+

@@ -86,15 +86,23 @@
         <servlet-name>FormViewController</servlet-name>
         <url-pattern>/formview</url-pattern>
     </servlet-mapping>
-        <servlet>
-        <servlet-name>DeletionController</servlet-name>
-        <servlet-class>controllers.DeletionController</servlet-class>
+    <servlet>
+        <servlet-name>SubmissionDeletionController</servlet-name>
+        <servlet-class>controllers.SubmissionDeletionController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DeletionController</servlet-name>
-        <url-pattern>/delete</url-pattern>
+        <servlet-name>SubmissionDeletionController</servlet-name>
+        <url-pattern>/deletesub</url-pattern>
     </servlet-mapping>
-            <servlet>
+        <servlet>
+        <servlet-name>FormDeletionController</servlet-name>
+        <servlet-class>controllers.FormDeletionController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormDeletionController</servlet-name>
+        <url-pattern>/deleteform</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>FormListController</servlet-name>
         <servlet-class>controllers.FormListController</servlet-class>
     </servlet>

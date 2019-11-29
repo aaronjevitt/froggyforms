@@ -189,7 +189,7 @@
                                         formData.append("ObjectId", sub);
                                         var xhr = new XMLHttpRequest();       
 
-                                        xhr.open("POST","delete", true);
+                                        xhr.open("POST","deletesub", true);
 
                                         xhr.send(formData);
 
@@ -215,7 +215,7 @@
                                         formData.append("unique_url", value);
                                         var xhr = new XMLHttpRequest();       
 
-                                        xhr.open("POST","delete", true);
+                                        xhr.open("POST","deleteform", true);
 
                                         xhr.send(formData);
 

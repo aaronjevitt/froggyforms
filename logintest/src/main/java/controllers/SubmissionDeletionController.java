@@ -16,9 +16,9 @@ import org.bson.types.ObjectId;
 
 
 @MultipartConfig
-public class DeletionController extends HttpServlet {
+public class SubmissionDeletionController extends HttpServlet {
  
-    public DeletionController() {
+    public SubmissionDeletionController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,16 +27,7 @@ public class DeletionController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             DatabaseController db = new DatabaseController();
             db.connect();
-            System.out.println(request.getParameter("unique_url"));
-            System.out.println(request.getParameter("ObjectId"));
-            if(request.getParameter("ObjectId") != null && request.getParameter("ObjectId").compareTo("delete") == 0)
-            {
-                db.deleteForm(request.getParameter("unique_url"));
-            }
-            else
-            {
             db.deleteSubmission(request.getParameter("unique_url"), request.getParameter("ObjectId"));
-            }
 
             
 	}

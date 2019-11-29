@@ -56,7 +56,7 @@ throws IOException, ServletException
             String fileName = "";
             for (Part part : request.getParts()) {
                 fileName = getFileName(part);
-                if (!"default.file".equals(fileName))
+                if (!"default.file".equals(fileName) && fileName.compareTo("")!=0)
                     part.write(uploadPath + File.separator + fileName);
             }
             request.setAttribute("message", "File " + fileName + " has uploaded successfully!");

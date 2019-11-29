@@ -26,12 +26,16 @@ public class SubViewController extends HttpServlet {
             //String pathinfo = request.getPathInfo();
             String submission_json;
             PrintWriter out = response.getWriter();  
-            System.out.println("You Made it to Subview");
             //pathinfo = pathinfo.substring(1);
             //System.out.println(pathinfo);
             db.connect();
             System.out.println(request.getParameter("ObjectId"));
             System.out.println(request.getParameter("unique_url"));
+            if(request.getParameter("ObjectId").compareTo("undefined") == 0)
+            {
+                out.println("oof");
+                return;
+            }
             //submission_json = db.getSubmissionJson(pathinfo, request.getParameter("ObjectId"));
             if(request.getParameter("ObjectId") == null || request.getParameter("unique_url") == null)
             {

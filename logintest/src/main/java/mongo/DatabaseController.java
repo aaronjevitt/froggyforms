@@ -320,11 +320,11 @@ public class DatabaseController {
      * @param url               the unique URL of the form to delete the submission from
      * @param submissionNumber  the specific submission number to delete
      */
-    public void deleteSubmission(String url, int submissionNumber)
+    public void deleteSubmission(String url, String id)
     {
         BasicDBObject obj = null;
         DBCollection col = null;
-        
+        ObjectId sub = new ObjectId(id);
         if(client == null)
         {
             System.out.println("Connection not established before trying to delete submission.");
@@ -334,7 +334,7 @@ public class DatabaseController {
         col = client.getDB("forms").getCollection(url);
         obj = new BasicDBObject();
         
-        obj.put("number", submissionNumber);
+        obj.put("_id", sub);
         col.remove(obj);
     }
     

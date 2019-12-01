@@ -165,6 +165,34 @@ public class DatabaseController {
         return urls;
     }
     
+     public ArrayList<String> getAllSubmissionID(String unique_url)
+    {
+        DBCollection col = null;
+        BasicDBObject submission = null;
+        DBCursor cursor = null;
+        ObjectId ID = null;
+        ArrayList<String> subs = new ArrayList<>();
+        
+        if(client == null)
+        {
+            System.out.println("Connecrtion not established before trying to get last form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection(unique_url);
+        cursor = col.find();
+        
+        int i = 0;
+        while(cursor.hasNext())
+        {
+            submission = (BasicDBObject)cursor.next();
+            ID = submission.getObjectId("_id");
+            subs.add(ID.toString());
+        }
+        
+        return subs;
+    }
+    
     public String getSubmissionJson(String url, int sub)
     {
         DBCollection col = null;
@@ -182,6 +210,34 @@ public class DatabaseController {
         
         query = new BasicDBObject();
         query.put("number", sub);
+        cursor = col.find(query);
+        
+        while(cursor.hasNext())
+        {
+            BasicDBObject result = (BasicDBObject)cursor.next();
+            json = result.getString("json");
+        }
+        
+        return json;
+    }
+    
+    public String getSubmissionJson(String url, String obj)
+    {
+        DBCollection col = null;
+        DBObject query = null;
+        DBCursor cursor = null;
+        String json = null;
+        ObjectId sub = new ObjectId(obj);
+        if(client == null)
+        {
+            System.out.println("Connection not established before trying to get a form.");
+            return null;
+        }
+        
+        col = client.getDB("forms").getCollection(url);
+        
+        query = new BasicDBObject();
+        query.put("_id", sub);
         cursor = col.find(query);
         
         while(cursor.hasNext())
@@ -264,11 +320,11 @@ public class DatabaseController {
      * @param url               the unique URL of the form to delete the submission from
      * @param submissionNumber  the specific submission number to delete
      */
-    public void deleteSubmission(String url, int submissionNumber)
+    public void deleteSubmission(String url, String id)
     {
         BasicDBObject obj = null;
         DBCollection col = null;
-        
+        ObjectId sub = new ObjectId(id);
         if(client == null)
         {
             System.out.println("Connection not established before trying to delete submission.");
@@ -278,7 +334,7 @@ public class DatabaseController {
         col = client.getDB("forms").getCollection(url);
         obj = new BasicDBObject();
         
-        obj.put("number", submissionNumber);
+        obj.put("_id", sub);
         col.remove(obj);
     }
     

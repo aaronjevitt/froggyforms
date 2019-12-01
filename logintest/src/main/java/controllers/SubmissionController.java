@@ -51,12 +51,12 @@ throws IOException, ServletException
     uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY + File.separator + url + File.separator + objectid.toString();
     File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())
-            uploadDir.mkdir();
+            uploadDir.mkdirs();
         try {
             String fileName = "";
             for (Part part : request.getParts()) {
                 fileName = getFileName(part);
-                if (!"default.file".equals(fileName))
+                if (!"default.file".equals(fileName) && fileName.compareTo("")!=0)
                     part.write(uploadPath + File.separator + fileName);
             }
             request.setAttribute("message", "File " + fileName + " has uploaded successfully!");

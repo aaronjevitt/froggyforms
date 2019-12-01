@@ -110,4 +110,20 @@
         <servlet-name>FormListController</servlet-name>
         <url-pattern>/formlist</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FileViewController</servlet-name>
+        <servlet-class>controllers.FileViewController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileViewController</servlet-name>
+        <url-pattern>/getfiles</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>DownloadController</servlet-name>
+        <servlet-class>controllers.DownloadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadController</servlet-name>
+        <url-pattern>/downloadfile</url-pattern>
+    </servlet-mapping>
 </web-app>

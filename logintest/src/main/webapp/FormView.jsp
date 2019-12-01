@@ -21,6 +21,9 @@
 
 <div class="form1" id = "form1">
 </div>
+    
+<h4>View Files From Submission</h4>
+<select class="form-control"  id='viewFiles' name='viewFiles' onClick="viewFiles()"></select>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -165,6 +168,26 @@
             }
         };   
     }
+    function viewFiles() 
+    {
+        var form = document.getElementById("form");
+        var forms = document.getElementById("formSelect");
+        var value = forms.options[forms.selectedIndex].value;
+        var formData = new FormData(form);
+        formData.append("unique_url", value);
+        var xhr = new XMLHttpRequest();       
+        xhr.open("POST","deleteform", true);
+        xhr.send(formData);
+        xhr.onload = function(e) {
+            if (this.status == 200) 
+            {
+                getForms();
+                getFormSubmissions();
+            }
+        };   
+    }
+    
+    
 		// Note - checkbox selections, when field required, do not render; issue with formBuilder https://github.com/kevinchappell/formBuilder/issues/910
 	</script>
 </body>

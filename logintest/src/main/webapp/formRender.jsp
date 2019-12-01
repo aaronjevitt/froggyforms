@@ -113,10 +113,10 @@
 
                                         xhr.onload = function(e) {
 
-                                            if (this.status == 200) {
+                                            if (this.status === 200) {
 
-                                               alert(this.responseText);
-
+                                               //alert(this.responseText);
+                                               window.location.assign('localhost:8080/f/submissionsuccess.html');
                                             }
 
                                         };   

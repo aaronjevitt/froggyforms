@@ -1,7 +1,10 @@
 package controllers;
 
+import static controllers.DownloadController.UPLOAD_DIR;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

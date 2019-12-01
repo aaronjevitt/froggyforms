@@ -7,7 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Servlet File Upload/Download</title>
          
-        <link rel="stylesheet" href="resource/css/main.css" />
     </head>
     <body>
         <div class="panel">
@@ -24,7 +23,7 @@
                   <tr>
                      <td align="center"><span id="fileName"><%=uploadDetails.get(i).getFileName() %></span></td>
                      <td align="center"><span id="fileSize"><%=uploadDetails.get(i).getFileSize() %> KB</span></td>
-                     <td align="center"><span id="fileDownload"><a id="downloadLink" class="hyperLink" href="<%=request.getContextPath()%>/downloadServlet?fileName=<%=uploadDetails.get(i).getFileName() %>">Download</a></span></td>
+                     <td align="center"><span id="fileDownload"><a id="downloadLink" class="hyperLink" href="downloadfile?fileName=<%=uploadDetails.get(i).getFileName() %>">Download</a></span></td>
                   </tr>
                   <% }
                    } else { %>

@@ -22,8 +22,9 @@
 <div class="form1" id = "form1">
 </div>
     
-<h4>View Files From Submission</h4>
-<select class="form-control"  id='viewFiles' name='viewFiles' onClick="viewFiles()"></select>
+    
+<h4> </h4>
+<button type="form-control"  id='viewFiles' name='viewFiles' onClick="viewFiles()">View Files From Submission</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -124,9 +125,18 @@
             if (this.status == 200) 
             {
                 if(activesub.options.length === 0)
+                {
                     getSubmission([{"type":"header","subtype":"h1","label":"There Are No Form Submissions"}]);
+                    document.getElementById("viewFiles").hidden = true;
+
+                    
+                }
                 else
+                {
                     getSubmission(this.responseText);
+                    document.getElementById("viewFiles").hidden = false;
+
+                }
             }
         };   
     } 
@@ -171,20 +181,21 @@
     function viewFiles() 
     {
         var form = document.getElementById("form");
-        var forms = document.getElementById("formSelect");
-        var value = forms.options[forms.selectedIndex].value;
+        var activeform = document.getElementById("formSelect");
+        var value = activeform.options[activeform.selectedIndex].value;
+        var activesub = document.getElementById("submissionSelect");
+        var sub = activesub.options[activesub.selectedIndex].value;
         var formData = new FormData(form);
         formData.append("unique_url", value);
+        formData.append("ObjectId", sub);
         var xhr = new XMLHttpRequest();       
-        xhr.open("POST","deleteform", true);
-        xhr.send(formData);
-        xhr.onload = function(e) {
-            if (this.status == 200) 
-            {
-                getForms();
-                getFormSubmissions();
-            }
-        };   
+        xhr.open("POST","getfiles", true);
+        xhr.send(formData); 
+        xhr.onload = function(e){
+            console.log(this.responsetext);
+            var locationstring = "getfiles?url="+ value + "&objid=" + sub;
+            window.location.assign(locationstring);
+        };
     }
     
     

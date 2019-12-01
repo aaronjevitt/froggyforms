@@ -18,7 +18,7 @@ public class DownloadController extends HttpServlet {
     public static int BUFFER_SIZE = 1024 * 100;
     public static final String UPLOAD_DIR = "upload";
  
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         handleRequest(request, response);
     }
  

@@ -12,17 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet(description = "List The Already Uploaded Files", urlPatterns = { "/uploadedFilesServlet" })
 public class FileViewController extends HttpServlet {
  
     private static final long serialVersionUID = 1L;
     public static final String UPLOAD_DIR = "upload";
  
     /***** This Method Is Called By The Servlet Container To Process A 'GET' Request *****/
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /***** Get The Absolute Path Of The Web Application *****/
         String applicationPath = getServletContext().getRealPath(""),
-                uploadPath = applicationPath + File.separator + UPLOAD_DIR + File.separator + "oIDcT" + File.separator + "5de0b0898b4b0939018e144d";
+                uploadPath = applicationPath + File.separator + UPLOAD_DIR + File.separator + request.getParameter("url") + File.separator + request.getParameter("objid");
  
         File fileUploadDirectory = new File(uploadPath);
         if (!fileUploadDirectory.exists()) {

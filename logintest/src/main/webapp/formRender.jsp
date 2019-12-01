@@ -115,8 +115,7 @@
 
                                             if (this.status === 200) {
 
-                                               //alert(this.responseText);
-                                               window.location.assign('localhost:8080/f/submissionsuccess.html');
+                                               alert(this.responseText);
                                             }
 
                                         };   

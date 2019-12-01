@@ -24,14 +24,14 @@
 </script>
 <style>
 body{
-  background-color: orange;
+  background-color: #d793ff;
 }
 </style>
 </head>
 
 <body>
   <%
-    String url = "The URL to fill out this form is FroggyForm.bike/" + ((String)request.getAttribute("unique_url"));
+    String url = "The URL to fill out this form is froggyforms.ddns.net:8080/f/" + ((String)request.getAttribute("unique_url"));
   %>
 
   <h1 style="color: green">Form Published!</h1>

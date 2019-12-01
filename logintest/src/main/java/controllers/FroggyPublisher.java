@@ -100,7 +100,7 @@ public class FroggyPublisher extends HttpServlet {
         System.out.println("post request froggypublisher");
         
         HttpSession session = request.getSession();
-        session.setAttribute("unique_url", "The URL for this form is froggyform.bike/" + url);
+        session.setAttribute("unique_url", "The URL for this form is froggyforms.ddns.net:8080/f/" + url);
         
         req.include(request, response);
         

@@ -19,14 +19,13 @@ body{
 
 <form action="AdminPage" method="post">
 <div>
-  <p style="text-align: center;"><b style ="background-color: white">Welcome to FroggyForm, Admin. What would you like to do?<b></p>
+  <p style="text-align: center; margin-top: 10vh; font-size: 150%"><b style ="background-color: white">Welcome to FroggyForm, Admin. What would you like to do?<b></p>
 </div>
 
-<table style="width: 100%; height: 80vh; margin-top: 15vh">
+<table style="width: 100%; height: 40vh; margin-top: 25vh">
   <tr>
-    <td><input type="submit" value="Create Form" name="create" style="width: 100%; height: 100%;"/></td>
-    <td><input type="submit" value="View Form" name="view" style="width: 100%; height: 100%;"/></td>
-    <td><input type="submit" value="Delete Form" name="delete" style="width: 100%; height: 100%;"/></td>
+    <td style="width: 50%"><input type="submit" value="   Create Form  " name="create" style="width: 100%; height: 100%; font-size: 200%"/></td>
+    <td style="width: 50%"><input type="submit" value="View/Delete Form" name="view" style="width: 100%; height: 100%; font-size: 200%"/></td>
   </tr>
 </table>
 

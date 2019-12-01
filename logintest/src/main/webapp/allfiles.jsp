@@ -1,6 +1,7 @@
 <%@page import="controllers.UploadDetail"%>
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,8 @@
                   <tr>
                      <td align="center"><span id="fileName"><%=uploadDetails.get(i).getFileName() %></span></td>
                      <td align="center"><span id="fileSize"><%=uploadDetails.get(i).getFileSize() %> KB</span></td>
-                     <td align="center"><span id="fileDownload"><a id="downloadLink" class="hyperLink" href="downloadfile?fileName=<%=uploadDetails.get(i).getFileName() %>">Download</a></span></td>
+                     <td align="center"><span id="fileDownload"><a id="downloadLink" class="hyperLink" href="downloadfile?fileName=<%=uploadDetails.get(i).getFileName()%>&url=<%=request.getParameter("url") %>&objid=<%=request.getParameter("objid") %>">Download</a></span></td>
+                     <td > hello </td>
                   </tr>
                   <% }
                    } else { %>
@@ -34,7 +36,7 @@
                </tbody>
             </table>
             <div class="margin_top_15px">
-               <a id="fileUpload" class="hyperLink" href="<%=request.getContextPath()%>/fileupload.jsp">Back</a>
+               <a id="fileUpload" class="hyperLink" href="<%=request.getContextPath()%>/FormView.jsp">Back</a>
             </div>
          </div>
      </body>

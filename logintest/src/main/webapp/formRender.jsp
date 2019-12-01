@@ -9,7 +9,6 @@
 <body>
 	<form id="fb-render" method="post" action="submit"></form>
 	<button type="button" id="get-user-data" name="submit-form" onclick="performAjaxSubmit()">Submit</button>
- 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
@@ -115,7 +114,8 @@
 
                                             if (this.status === 200) {
 
-                                               alert(this.responseText);
+                                               renderSuccessForm();
+                                               getUserDataBtn.hidden = "hidden";
                                             }
 
                                         };   
@@ -134,6 +134,20 @@
 		  $(fbRender).formRender({ formData });
 
 		});
+                
+                
+                    function renderSuccessForm()
+    {
+        console.log("bloop");
+        var FormData = [{"type":"header","subtype":"h1","label":"Form was successfully submitted. You may close this tab."}];
+        jQuery(function($)
+        {
+            $(fbRender).formRender({
+                        dataType: 'json',
+                        formData: FormData
+                });
+        });
+    }
 	</script>
 </body>
 </html>

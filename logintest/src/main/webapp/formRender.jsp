@@ -38,7 +38,7 @@
 						case "checkbox-group":
 							if(!$(fbRender).formRender("userData")[i].userData)
 							{
-								return false; // maybe return type to fill out?
+								return false; // Maybe return type to fill out?
 							}
 							break;
 						
@@ -49,10 +49,12 @@
 							}
 							break;
 						
-						/* can't implement currently - nothing stored
 						case "file":
+							if(document.getElementById($(fbRender).formRender("userData")[i].name).files.length === 0)
+							{
+								return false;
+							}
 							break;
-						*/
 						
 						case "number":
 							if(!$(fbRender).formRender("userData")[i].userData[0])
@@ -68,6 +70,7 @@
 							}
 							break;
 						
+						// Assuming use of default "select an option" option as option #1
 						case "select":
 							if($(fbRender).formRender("userData")[i].userData[0] 
 								=== $(fbRender).formRender("userData")[i].values[0].value)

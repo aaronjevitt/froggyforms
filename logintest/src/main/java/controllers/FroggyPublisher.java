@@ -71,11 +71,13 @@ public class FroggyPublisher extends HttpServlet {
         System.out.println("string reps: ");
         System.out.println(request.getPathInfo());
         System.out.println(response.toString());
-
+        String title = request.getParameter("title");
         if(json != null && !json.isEmpty())
         {
-            url = createUniqueURL();
-
+            if (title == null)
+                url = createUniqueURL();
+            else if (db.checkIfExists(title) == false)
+                url = title;
             db.connect();
             db.addNewForm(url, json);
             db.close();

@@ -146,13 +146,10 @@
                 if(activesub.options.length === 0)
                     getSubmission([{"type":"header","subtype":"h1","label":"There Are No Form Submissions"}]);
                 else
-<<<<<<< Updated upstream
-=======
                 {
-                    console.log(sub);
                     document.getElementById("subnum").value = submissionMap.get(sub);
->>>>>>> Stashed changes
                     getSubmission(this.responseText);
+                }
             }
         };   
     } 

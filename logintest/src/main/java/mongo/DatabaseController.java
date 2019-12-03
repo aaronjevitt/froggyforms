@@ -71,7 +71,6 @@ public class DatabaseController {
         
         obj.put("unique_url", url);
         obj.put("form_json", json);
-        
         System.out.println("adding form " + url);
         col.insert(obj);
     }

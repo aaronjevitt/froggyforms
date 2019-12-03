@@ -97,10 +97,9 @@ public class FroggyPublisher extends HttpServlet {
 //            db.close();
         
         RequestDispatcher req = request.getRequestDispatcher("FroggyFormPublished.jsp");
-        System.out.println("post request froggypublisher");
         
         HttpSession session = request.getSession();
-        session.setAttribute("unique_url", "The URL for this form is froggyforms.ddns.net:8080/f/" + url);
+        session.setAttribute("unique_url", request.getRequestURL().substring(0,request.getRequestURL().length()-15) + "f/" + url);
         
         req.include(request, response);
         

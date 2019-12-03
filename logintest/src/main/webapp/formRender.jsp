@@ -3,8 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <style>
+            body
+            {
+                background-image: url("blueBackgroundFrog.jpg");
+                background-repeat: round;
+            }
+        </style>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Froggy Forms</title>
+    <title>Froggy Forms!</title>
 </head>
 <body>
 	<form id="fb-render" method="post" action="submit"></form>

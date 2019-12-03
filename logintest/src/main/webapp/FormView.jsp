@@ -5,8 +5,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" charset="utf-8">
 <title>View Submitted Forms</title>
+<style>
+    body
+    {
+        background-image: url("builderFrog.jpg");
+        background-repeat: round;
+    }
+    table
+    {
+        border: 3px solid darkgreen;
+        margin-left: 30vw;
+        width: 40%;
+        font-family: sans-serif;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.2),
+            0px 10px 20px rgba(0,0,0,0.25),
+            -12px 20px 20px rgba(0,0,0,0.25),
+            0px 15px 20px rgba(0,0,0,0.3);
+    }
+</style>
 </head>
 <body>
+<div style="text-align: center; align-items: center">
 <form id="form">
 
 <h4>Form URL:</h4>
@@ -15,17 +34,28 @@
 <h4>Submission:</h4>
 <select class="form-control"  id='submissionSelect' name='submissionSelect' onClick="getFormSubmission()"></select>
 
-<button type="button" class="form-control" id='deletesub' name='deletesub' onClick='deletecurrentsubmission()' disabled='true'>Delete Submission</button>
-<button type="button" class="form-control" id='deleteform' name='deleteform' onClick='deletecurrentform()' disabled='true'>Delete Form</button>
 </form>
-
-<div class="form1" id = "form1">
+    <br></br>
+    <br></br>
+    <br></br>
+    
+<table style="background-color: #d793ff">
+    <tr>
+        <td>
+            <div class="form1" id = "form1">
+            </div>
+        </td>
+    </tr>
+</table>
+    
+    
+    <br></br>
+    <br></br>
+<button type="form-control"  id='viewFiles' name='viewFiles' onClick="viewFiles()" style="color: green">View Files From Submission</button>
+<br></br>
+<button type="button" class="form-control" id='deletesub' name='deletesub' onClick='deletecurrentsubmission()' disabled='true' style="color: red">Delete Submission</button>
+<button type="button" class="form-control" id='deleteform' name='deleteform' onClick='deletecurrentform()' disabled='true' style="color: red">Delete Form</button>
 </div>
-    
-    
-<h4> </h4>
-<button type="form-control"  id='viewFiles' name='viewFiles' onClick="viewFiles()">View Files From Submission</button>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://formbuilder.online/assets/js/form-render.min.js"></script>

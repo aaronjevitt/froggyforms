@@ -6,8 +6,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
-        <title>Servlet File Upload/Download</title>
+        <title>FroggyForm File Download</title>
          
+        <style>
+            body
+            {
+                background-color: #d793ff;
+            }
+            table, td
+            {
+                border: 1px solid darkgreen;
+            }
+        </style>
     </head>
     <body>
         <div class="panel">

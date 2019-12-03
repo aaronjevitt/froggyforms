@@ -31,11 +31,11 @@ body{
 
 <body>
   <%
-    String url = "The URL to fill out this form is froggyforms.ddns.net:8080/f/" + ((String)request.getAttribute("unique_url"));
+    String url = "The URL to fill out this form is" + request.getRequestURL() + "/" + ((String)request.getAttribute("unique_url"));
   %>
 
   <h1 style="color: green">Form Published!</h1>
-  <h2 id="msg" style="color: green">${unique_url}<h2>
+  <h2 id="msg" style="color: green">The URL to fill out this form is <a href="${unique_url}" target="_blank">${unique_url}</a><h2>
   <br></br>
   <form action="PublishedPage" method="post">
     <input type="submit" value="Back to homepage" name="homepage"/>

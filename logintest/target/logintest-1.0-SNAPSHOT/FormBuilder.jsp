@@ -23,7 +23,6 @@
 		<div>
                     <label for="title">Choose a url(must be unique) or leave blank for random url</label>
                     	<input type="text" id="title"></title>
-
 			<button type="submit" id="publishButton" style="visibility: hidden"></button>
 			<input type="text" id="jsonString" name="jsonString" style="visibility: hidden"></input>
 		</div>

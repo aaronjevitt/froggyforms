@@ -18,17 +18,17 @@ public class DownloadController extends HttpServlet {
     public static int BUFFER_SIZE = 1024 * 100;
     public static final String UPLOAD_DIR = "upload";
  
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         handleRequest(request, response);
     }
  
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 
+        System.out.println("");
         /***** Get The Absolute Path Of The File To Be Downloaded *****/
         String fileName = request.getParameter("fileName");
         
         String applicationPath = getServletContext().getRealPath("");
-        String downloadPath = applicationPath + File.separator + UPLOAD_DIR + File.separator + "oIDcT" + File.separator + "5de0b0898b4b0939018e144d";
+        String downloadPath = applicationPath + File.separator + UPLOAD_DIR + File.separator + request.getParameter("url") + File.separator + request.getParameter("objid");
         String filePath = downloadPath + File.separator + fileName;
  
         File file = new File(filePath);
